@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:get_it/get_it.dart';
 import 'package:uuid/uuid.dart';
@@ -26,6 +27,7 @@ class DeviceIDService {
 
   Future<Map<String, dynamic>> getOtherIdentifier() async {
     Map<String, dynamic> otherIdentifier = {};
+
     if (Platform.isIOS) {
       final deviceId = await getDeviceID();
 
@@ -35,11 +37,11 @@ class DeviceIDService {
       final androidInfo = await deviceInfo.androidInfo;
       // from android 8.0. can't get android serial number
       final serialNumber = androidInfo.model;
-
       final androidId = await getDeviceID();
 
       otherIdentifier = {"AndroidID": androidId, "Serial": serialNumber};
     }
+
     return {"otherIdentifier": otherIdentifier};
   }
 

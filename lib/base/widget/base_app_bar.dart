@@ -1,31 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:get_it/get_it.dart';
 import 'package:v_office_base/base/theme/utils.dart';
 import 'package:v_office_base/base/theme/vo_color.dart';
 import 'package:v_office_base/base/widget/icon_widget.dart';
 import 'package:v_office_base/gen/assets.gen.dart';
 
 class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const BaseAppBar(
-      {Key? key,
-      this.title,
-      this.child,
-      this.actions,
-      this.onBack,
-      this.leadingWidth,
-      this.titleSpacing,
-      this.centerTitle = true,
-      this.leadingIcon,
-      this.leading,
-      this.onHomePress,
-      this.isClose,
-      this.onClose,
-      this.isShowTrailingHome,
-      this.automaticallyImplyLeading = true,
-      this.flexibleSpace,
-      this.backgroundColor})
-      : super(key: key);
+  const BaseAppBar({
+    Key? key,
+    this.title,
+    this.child,
+    this.actions,
+    this.onBack,
+    this.leadingWidth,
+    this.titleSpacing,
+    this.centerTitle = true,
+    this.leadingIcon,
+    this.leading,
+    this.onHomePress,
+    this.isClose,
+    this.onClose,
+    this.isShowTrailingHome,
+    this.automaticallyImplyLeading = true,
+    this.flexibleSpace,
+    this.backgroundColor,
+  }) : super(key: key);
 
   final String? title;
   final Widget? child;
@@ -66,13 +64,11 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: isShowTrailingHome == true
           ? [
               IconButton(
-                  icon: IconWidget.ic24(
-                      path: leadingIcon ?? Assets.images.icMgmHome),
-                  onPressed: onHomePress != null
-                      ? onHomePress!
-                      : () {
-                          //to-do
-                        }),
+                onPressed: onHomePress != null ? onHomePress! : () {},
+                icon: IconWidget.ic24(
+                  path: leadingIcon ?? Assets.images.icMgmHome,
+                ),
+              ),
             ]
           : actions,
     );
@@ -82,24 +78,23 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
     if (!automaticallyImplyLeading) {
       return null;
     }
+
     if (leading != null) {
       return leading;
     }
+
     if (isClose == true) {
       return IconButton(
-          icon: IconWidget.ic24(path: leadingIcon ?? Assets.images.icClose),
-          onPressed: () {
-            onClose?.call();
-          });
+        onPressed: () => onClose?.call(),
+        icon: IconWidget.ic24(path: leadingIcon ?? Assets.images.icClose),
+      );
     }
     return IconButton(
-        icon: IconWidget.ic24(
-            color: VOColors.white,
-            path: leadingIcon ?? Assets.images.icArrowLineLeft),
-        onPressed: onBack != null
-            ? onBack!
-            : () {
-                Navigator.maybePop(context);
-              });
+      onPressed: onBack != null ? onBack! : () => Navigator.maybePop(context),
+      icon: IconWidget.ic24(
+        color: VOColors.white,
+        path: leadingIcon ?? Assets.images.icArrowLineLeft,
+      ),
+    );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:v_office_base/base/theme/utils.dart';
 
 class IBoardScaffold extends StatelessWidget {
@@ -23,12 +22,13 @@ class IBoardScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: appBar,
-        backgroundColor: ThemeUtils.color.background,
-        body: body,
-        bottomNavigationBar: _buildBottomBar(context),
-        floatingActionButton: floatingActionButton,
-        extendBodyBehindAppBar: extendBodyBehindAppBar);
+      appBar: appBar,
+      backgroundColor: ThemeUtils.color.background,
+      body: body,
+      bottomNavigationBar: _buildBottomBar(context),
+      floatingActionButton: floatingActionButton,
+      extendBodyBehindAppBar: extendBodyBehindAppBar,
+    );
   }
 
   Widget? _buildBottomBar(BuildContext context) {

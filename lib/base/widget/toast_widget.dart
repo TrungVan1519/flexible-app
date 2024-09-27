@@ -30,15 +30,10 @@ class ToastWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           _buildToastIconType(toastType),
-          const SizedBox(
-            width: 8.0,
-          ),
+          const SizedBox(width: 8.0),
           Flexible(
             child: customContent ??
-                Text(
-                  message,
-                  style: ThemeUtils.textStyle.mediumTextRegular,
-                ),
+                Text(message, style: ThemeUtils.textStyle.mediumTextRegular),
           ),
         ],
       ),
@@ -49,63 +44,77 @@ class ToastWidget {
     fToast.init(globalKey.currentState!.context);
   }
 
-  _showToast(String message, ToastGravity gravity, ToastType toastType,
-      {int? duration, Widget? customContent}) {
-    //remove duplicate Toast showing
+  _showToast(
+    String message,
+    ToastGravity gravity,
+    ToastType toastType, {
+    int? duration,
+    Widget? customContent,
+  }) {
+    // todo remove duplicate Toast showing
     removeToast();
     fToast.showToast(
+      gravity: gravity,
+      toastDuration: Duration(seconds: duration ?? 3),
       child: _toastContent(
         message: message,
         toastType: toastType,
         customContent: customContent,
       ),
-      gravity: gravity,
-      toastDuration: Duration(seconds: duration ?? 3),
     );
   }
 
   Widget _buildToastIconType(ToastType toastType) {
     switch (toastType) {
       case ToastType.Success:
-        {
-          return IconWidget.ic24(
-            path: Assets.images.icSuccessOutline,
-            color: ThemeUtils.color.neutralGreen,
-          );
-        }
+        return IconWidget.ic24(
+          path: Assets.images.icSuccessOutline,
+          color: ThemeUtils.color.neutralGreen,
+        );
       case ToastType.Error:
-        {
-          return IconWidget.ic24(
-            path: Assets.images.icWarning,
-            color: ThemeUtils.color.neutralRed,
-          );
-        }
+        return IconWidget.ic24(
+          path: Assets.images.icWarning,
+          color: ThemeUtils.color.neutralRed,
+        );
       default:
-        {
-          return const SizedBox();
-        }
+        return const SizedBox();
     }
   }
 
-  showToastCenterSuccess(
-      {required String message, int? duration, Widget? customContent}) {
-    _showToast(message, ToastGravity.CENTER, ToastType.Success,
-        duration: duration, customContent: customContent);
+  showToastCenterSuccess({
+    required String message,
+    int? duration,
+    Widget? customContent,
+  }) {
+    _showToast(
+      message,
+      ToastGravity.CENTER,
+      ToastType.Success,
+      duration: duration,
+      customContent: customContent,
+    );
   }
 
-  showToastCenterError(
-      {required String message, int? duration, Widget? customContent}) {
-    _showToast(message, ToastGravity.CENTER, ToastType.Error,
-        duration: duration, customContent: customContent);
+  showToastCenterError({
+    required String message,
+    int? duration,
+    Widget? customContent,
+  }) {
+    _showToast(
+      message,
+      ToastGravity.CENTER,
+      ToastType.Error,
+      duration: duration,
+      customContent: customContent,
+    );
   }
 
-  // To remove present shwoing toast
+  // todo remove present showing toast
   removeToast() {
     fToast.removeCustomToast();
   }
 
-// To clear the queue
-
+  // todo clear the queue
   removeAllQueuedToasts() {
     fToast.removeQueuedCustomToasts();
   }

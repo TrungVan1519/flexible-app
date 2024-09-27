@@ -13,22 +13,21 @@ class IBLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-          width: height,
-          height: height,
-          child: const CircularProgressIndicator(
-            color: VOColors.primaryLightTextColor,
-            backgroundColor: VOColors.white10,
-            strokeWidth: 2,
-          )),
+        width: height,
+        height: height,
+        child: const CircularProgressIndicator(
+          color: VOColors.primaryLightTextColor,
+          backgroundColor: VOColors.white10,
+          strokeWidth: 2,
+        ),
+      ),
     );
   }
 }
 
 Widget buildLoading(bool show, {Color? bgColor}) {
   if (show) {
-    return GetIt.instance<IBLoadingOverlay>().buildLoading(
-      bgColor: bgColor,
-    );
+    return GetIt.instance<IBLoadingOverlay>().buildLoading(bgColor: bgColor);
   }
 
   return const SizedBox();
@@ -41,17 +40,12 @@ abstract class IBLoadingOverlay {
 class IBLoadingOverlayImpl extends IBLoadingOverlay {
   @override
   Widget buildLoading({Color? bgColor}) {
-    return _IBLoadingOverlay(
-      backgroundColor: bgColor,
-    );
+    return _IBLoadingOverlay(backgroundColor: bgColor);
   }
 }
 
 class _IBLoadingOverlay extends StatelessWidget {
-  const _IBLoadingOverlay({
-    Key? key,
-    this.backgroundColor,
-  }) : super(key: key);
+  const _IBLoadingOverlay({Key? key, this.backgroundColor}) : super(key: key);
 
   final Color? backgroundColor;
 

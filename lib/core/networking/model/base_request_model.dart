@@ -8,10 +8,11 @@ class BaseRequestModel {
   final bool isSecurity;
   final String? data;
 
-  BaseRequestModel(
-      {this.deviceName = "Android 14 VOffice 3.6.9",
-      this.isSecurity = false,
-      this.data});
+  BaseRequestModel({
+    this.deviceName = "Android 14 VOffice 3.6.9",
+    this.isSecurity = false,
+    this.data,
+  });
 
   Map<String, dynamic> toJson() => _$BaseRequestModelToJson(this);
 

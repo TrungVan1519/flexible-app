@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
-import 'package:multiple_localization/multiple_localization.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:v_office_base/base/share_reference_manager.dart';
 import 'package:v_office_base/base/utils/device_services.dart';
@@ -28,21 +27,14 @@ abstract class Argument {
 
 class DefaultRoute {
   static Route<dynamic> notFound() => MaterialPageRoute<void>(
-      builder: (_) => const Scaffold(
-            body: Center(
-              child: Text('Page not found !'),
-            ),
-          ));
+      builder: (_) =>
+          const Scaffold(body: Center(child: Text('Page not found !'))));
 
   static Widget splashScreen(Widget? screen) {
     if (screen != null) {
       return screen;
     } else {
-      return const Scaffold(
-        body: Center(
-          child: Text('Hello'),
-        ),
-      );
+      return const Scaffold(body: Center(child: Text('Hello')));
     }
   }
 }
@@ -76,22 +68,25 @@ class ModuleManagement {
         return module.onGenerateRoute(settings);
       }
     }
+
     return DefaultRoute.notFound();
   }
 
   List<LocalizationsDelegate<dynamic>> localizationsDelegates() {
-    final List<LocalizationsDelegate<dynamic>> result =
-        <LocalizationsDelegate<dynamic>>[];
-    result.addAll([
-      const AppLocalizationDelegate(),
-      GlobalMaterialLocalizations.delegate,
-      GlobalWidgetsLocalizations.delegate,
-      GlobalCupertinoLocalizations.delegate
-    ]);
+    final result = <LocalizationsDelegate<dynamic>>[];
+    result.addAll(
+      [
+        const AppLocalizationDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate
+      ],
+    );
 
     for (final BaseModule module in _modules) {
       result.addAll(module.localizationsDelegates());
     }
+
     return result;
   }
 
@@ -101,11 +96,17 @@ class ModuleManagement {
     final sharedPreferences = await SharedPreferences.getInstance();
 
     serviceLocator.registerLazySingleton(
-        () => SharedPreferencesManager(sharedPreferences: sharedPreferences));
+      () => SharedPreferencesManager(sharedPreferences: sharedPreferences),
+    );
 
-    serviceLocator.registerLazySingleton(() => AppCubit(
+    serviceLocator.registerLazySingleton(
+      () => AppCubit(
         const AppState<AppTheme, AppLanguage>(
-            appTheme: AppTheme.light, appLanguage: AppLanguage.vi)));
+          appTheme: AppTheme.light,
+          appLanguage: AppLanguage.vi,
+        ),
+      ),
+    );
 
     serviceLocator.registerLazySingleton(() => MessageCenter());
 
@@ -139,9 +140,7 @@ class ModuleManagement {
     //TODO: TEST
     // network = Network.devNetwork();
 
-    GetIt.instance.registerLazySingleton<Network>(
-      () => network,
-    );
+    GetIt.instance.registerLazySingleton<Network>(() => network);
 
     final Dio dio = await setupDio(network.domain.apiUrl);
 

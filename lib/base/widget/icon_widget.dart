@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class IconWidget extends StatelessWidget {
-  factory IconWidget.ic80(
-          {required String path, Color? color, bool? noTintColor}) =>
+  factory IconWidget.ic80({
+    required String path,
+    Color? color,
+    bool? noTintColor,
+  }) =>
       IconWidget(
         path: path,
         color: color,
@@ -12,8 +15,11 @@ class IconWidget extends StatelessWidget {
         noTintColor: noTintColor,
       );
 
-  factory IconWidget.ic48(
-          {required String path, Color? color, bool? noTintColor}) =>
+  factory IconWidget.ic48({
+    required String path,
+    Color? color,
+    bool? noTintColor,
+  }) =>
       IconWidget(
         path: path,
         color: color,
@@ -22,8 +28,11 @@ class IconWidget extends StatelessWidget {
         noTintColor: noTintColor,
       );
 
-  factory IconWidget.ic40(
-          {required String path, Color? color, bool? noTintColor}) =>
+  factory IconWidget.ic40({
+    required String path,
+    Color? color,
+    bool? noTintColor,
+  }) =>
       IconWidget(
         path: path,
         color: color,
@@ -32,8 +41,11 @@ class IconWidget extends StatelessWidget {
         noTintColor: noTintColor,
       );
 
-  factory IconWidget.ic24(
-          {required String path, Color? color, bool? noTintColor}) =>
+  factory IconWidget.ic24({
+    required String path,
+    Color? color,
+    bool? noTintColor,
+  }) =>
       IconWidget(
           path: path,
           color: color,
@@ -41,8 +53,11 @@ class IconWidget extends StatelessWidget {
           height: 24,
           noTintColor: noTintColor);
 
-  factory IconWidget.ic18(
-          {required String path, Color? color, bool? noTintColor}) =>
+  factory IconWidget.ic18({
+    required String path,
+    Color? color,
+    bool? noTintColor,
+  }) =>
       IconWidget(
         path: path,
         color: color,
@@ -51,8 +66,11 @@ class IconWidget extends StatelessWidget {
         noTintColor: noTintColor,
       );
 
-  factory IconWidget.ic16(
-          {required String path, Color? color, bool? noTintColor}) =>
+  factory IconWidget.ic16({
+    required String path,
+    Color? color,
+    bool? noTintColor,
+  }) =>
       IconWidget(
         path: path,
         color: color,
@@ -60,6 +78,7 @@ class IconWidget extends StatelessWidget {
         height: 16,
         noTintColor: noTintColor,
       );
+
   final String path;
   final double? width;
   final double? height;

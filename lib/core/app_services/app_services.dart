@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -10,10 +11,7 @@ import 'package:v_office_base/base/share_reference_manager.dart';
 import 'package:v_office_base/base/theme/app_theme.dart';
 import 'package:v_office_base/generated/l10n.dart';
 
-enum AppTheme {
-  light,
-  dark,
-}
+enum AppTheme { light, dark }
 
 enum AppLanguage { en, vi }
 
@@ -33,6 +31,7 @@ extension AppLanguageEx on AppLanguage {
     if (value == AppLanguage.vi.keyValue) {
       return AppLanguage.vi;
     }
+
     return AppLanguage.en;
   }
 
@@ -60,8 +59,12 @@ class AppState<T extends AppTheme, V extends AppLanguage> extends Equatable {
 
 class AppCubit extends Cubit<AppState<AppTheme, AppLanguage>> {
   AppCubit(AppState<AppTheme, AppLanguage> appState)
-      : super(const AppState<AppTheme, AppLanguage>(
-            appTheme: AppTheme.light, appLanguage: AppLanguage.vi));
+      : super(
+          const AppState<AppTheme, AppLanguage>(
+            appTheme: AppTheme.light,
+            appLanguage: AppLanguage.vi,
+          ),
+        );
 
   final SharedPreferencesManager _sharedPreferencesManager =
       GetIt.instance.get();
@@ -75,15 +78,14 @@ class AppCubit extends Cubit<AppState<AppTheme, AppLanguage>> {
   }
 
   Pair getDefault() {
-    AppLanguage defaultLanguage = AppLanguage.vi;
-
     final currentLocale = Platform.localeName;
+    AppLanguage defaultLanguage = AppLanguage.vi;
 
     if (currentLocale.contains('vi')) {
       defaultLanguage = AppLanguage.vi;
     }
 
-    final String _language = _sharedPreferencesManager.getString(kLanguage) ??
+    final String language0 = _sharedPreferencesManager.getString(kLanguage) ??
         defaultLanguage.keyValue;
 
     final String themValue =
@@ -91,9 +93,10 @@ class AppCubit extends Cubit<AppState<AppTheme, AppLanguage>> {
     final theme = AppThemeEx.fromValue(themValue);
 
     AppLanguage language = AppLanguage.en;
-    if (_language == AppLanguage.vi.keyValue) {
+    if (language0 == AppLanguage.vi.keyValue) {
       language = AppLanguage.vi;
     }
+
     return Pair(language, theme);
   }
 
@@ -102,26 +105,38 @@ class AppCubit extends Cubit<AppState<AppTheme, AppLanguage>> {
   }
 
   Future<bool> saveTheme(String themeCode) {
-    return SharedPreferences.getInstance().then((SharedPreferences shared) {
+    return SharedPreferences.getInstance().then((shared) {
       return shared.setString(kTheme, themeCode);
     });
   }
 
   void changeTheme({required AppTheme theme}) {
     saveTheme(themeToString(theme));
-    safeEmit(AppState<AppTheme, AppLanguage>(
-        appTheme: theme, appLanguage: state.appLanguage));
+    safeEmit(
+      AppState<AppTheme, AppLanguage>(
+        appTheme: theme,
+        appLanguage: state.appLanguage,
+      ),
+    );
   }
 
   void changeLanguage({required AppLanguage language}) {
     saveLanguage(langToString(language));
 
-    safeEmit(AppState<AppTheme, AppLanguage>(
-        appLanguage: language, appTheme: state.appTheme));
+    safeEmit(
+      AppState<AppTheme, AppLanguage>(
+        appLanguage: language,
+        appTheme: state.appTheme,
+      ),
+    );
   }
 
   void applySetting({required AppTheme theme, required AppLanguage language}) {
-    safeEmit(AppState<AppTheme, AppLanguage>(
-        appLanguage: language, appTheme: theme));
+    safeEmit(
+      AppState<AppTheme, AppLanguage>(
+        appLanguage: language,
+        appTheme: theme,
+      ),
+    );
   }
 }

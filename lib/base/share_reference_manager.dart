@@ -2,6 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesManager {
   SharedPreferencesManager({required this.sharedPreferences});
+
   final SharedPreferences sharedPreferences;
 
   bool containsKey(String key) => sharedPreferences.containsKey(key);

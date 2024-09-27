@@ -1,13 +1,10 @@
 import 'package:flutter_event_bus/flutter_event_bus.dart';
 
-enum MessageType {
-  WatchlistChange,
-  // TODO
-  Logout,
-}
+enum MessageType { WatchlistChange, Logout }
 
 class MessageEvent<T> {
   MessageEvent({required this.type, this.data});
+
   MessageType type;
   T? data;
 }

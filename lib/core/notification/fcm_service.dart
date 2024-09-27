@@ -6,7 +6,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:v_office_base/gen/assets.gen.dart';
 
 import 'fcm_setting_service.dart';
 
@@ -25,8 +24,7 @@ class FCMService {
   Stream<RemoteNotification?> get onReceiveRemoteNotif =>
       _onReceiveRemoteNotif.stream;
 
-  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
+  final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
   AndroidNotificationChannel get getNotifChannel =>
       const AndroidNotificationChannel(
@@ -37,9 +35,7 @@ class FCMService {
       );
 
   Future initialize(FirebaseOptions? options) async {
-    await Firebase.initializeApp(
-      options: options,
-    );
+    await Firebase.initializeApp(options: options);
     await _initializeFirebaseMessaging();
   }
 
@@ -87,22 +83,24 @@ class FCMService {
   Future _configLocalNotification() async {
     const initSettingAndroid =
         AndroidInitializationSettings('@mipmap/ic_launcher');
-
     const initSettingIOS = DarwinInitializationSettings();
-
     const initSettings = InitializationSettings(
-        android: initSettingAndroid, iOS: initSettingIOS);
+      android: initSettingAndroid,
+      iOS: initSettingIOS,
+    );
 
     await flutterLocalNotificationsPlugin.initialize(
       initSettings,
       onDidReceiveNotificationResponse: (notificationResponse) {
-        //Khi click vào message từ notification trên thanh statusBar
+        // Khi click vào message từ notification trên thanh statusBar
         if (notificationResponse.notificationResponseType ==
             NotificationResponseType.selectedNotification) {
-          //to-do handle
-          _onReceiveRemoteNotif.sink.add(RemoteNotification(
+          _onReceiveRemoteNotif.sink.add(
+            RemoteNotification(
               title: notificationResponse.actionId,
-              body: notificationResponse.payload));
+              body: notificationResponse.payload,
+            ),
+          );
         }
       },
     );

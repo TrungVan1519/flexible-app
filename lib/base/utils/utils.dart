@@ -14,11 +14,11 @@ class Utils {
   static final I = Utils._();
 
   final toolTipKey = GlobalKey();
-
   final justToolTipKey = GlobalKey();
 
   Future<String> deviceName() async {
     final deviceInfo = DeviceInfoPlugin();
+
     if (Platform.isAndroid) {
       final info = await deviceInfo.androidInfo;
       return "${info.device} - ${info.manufacturer} - ${info.version.release}";
@@ -35,9 +35,7 @@ class Utils {
       permission = Permission.storage;
     } else if (Platform.isAndroid) {
       final deviceInfo = DeviceInfoPlugin();
-
       final info = await deviceInfo.androidInfo;
-
       final osVersion = info.version.sdkInt;
 
       if (osVersion >= 33) {
@@ -106,6 +104,7 @@ class Utils {
   Future<String> getDeviceId() async {
     final nowInMillis = DateTime.now().millisecondsSinceEpoch.toString();
     final deviceInfo = DeviceInfoPlugin();
+
     if (Platform.isAndroid) {
       final info = await deviceInfo.androidInfo;
       return info.id.isNotEmpty ? info.id : nowInMillis;

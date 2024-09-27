@@ -13,7 +13,6 @@ extension MainPageTypeEx on MainPageType {
         return 3;
       case MainPageType.other:
         return 4;
-
       default:
         return 0;
     }

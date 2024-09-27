@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:v_office_base/base/theme/utils.dart';
 import 'package:v_office_base/base/widget/icon_widget.dart';
 import 'package:v_office_base/gen/assets.gen.dart';
@@ -9,36 +8,37 @@ class BottomSheetWidget extends StatelessWidget {
   final bool showBack;
   final double topMargin;
 
-  const BottomSheetWidget(
-      {Key? key,
-      required this.child,
-      this.showBack = false,
-      this.topMargin = 0})
-      : super(key: key);
+  const BottomSheetWidget({
+    Key? key,
+    required this.child,
+    this.showBack = false,
+    this.topMargin = 0,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(children: [
-      Container(
-        margin: EdgeInsets.only(top: topMargin),
-        padding: EdgeInsets.only(
-            top: 16, bottom: MediaQuery.of(context).padding.bottom),
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(16.0),
-            topRight: Radius.circular(16.0),
+    return Wrap(
+      children: [
+        Container(
+          margin: EdgeInsets.only(top: topMargin),
+          padding: EdgeInsets.only(
+            top: 16,
+            bottom: MediaQuery.of(context).padding.bottom,
           ),
-          color: ThemeUtils.color.secondary,
+          decoration: BoxDecoration(
+            color: ThemeUtils.color.secondary,
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(16),
+              topRight: Radius.circular(16),
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [const DragIcon(), child],
+          ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const DragIcon(),
-            child,
-          ],
-        ),
-      ),
-    ]);
+      ],
+    );
   }
 }
 
@@ -50,17 +50,18 @@ Future<T?> showCustomBottomSheet<T>(
   double? topMargin,
 }) async {
   return showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      isDismissible: isDismissible,
-      isScrollControlled: true,
-      builder: (BuildContext bc) {
-        return BottomSheetWidget(
-          showBack: showBack,
-          topMargin: topMargin ?? 0,
-          child: child,
-        );
-      });
+    context: context,
+    backgroundColor: Colors.transparent,
+    isDismissible: isDismissible,
+    isScrollControlled: true,
+    builder: (_) {
+      return BottomSheetWidget(
+        showBack: showBack,
+        topMargin: topMargin ?? 0,
+        child: child,
+      );
+    },
+  );
 }
 
 class DragIcon extends StatelessWidget {

@@ -8,8 +8,8 @@ import 'package:v_office_base/base/utils/enum.dart';
 
 class BottomBarCubit extends Cubit<int> {
   BottomBarCubit() : super(0);
-  late PageController controller = PageController(initialPage: mainIndexPage);
 
+  late PageController controller = PageController(initialPage: mainIndexPage);
   late BuildContext context;
 
   void initState(BuildContext context) {
@@ -17,10 +17,7 @@ class BottomBarCubit extends Cubit<int> {
     onPageChanged(mainIndexPage);
   }
 
-  void onPageChanged(
-    int index, {
-    VoidCallback? onJumpDone,
-  }) async {
+  void onPageChanged(int index, {VoidCallback? onJumpDone}) async {
     FocusScope.of(context).requestFocus(FocusNode());
     if (index == MainPageType.other.index) {
       return;
@@ -29,10 +26,7 @@ class BottomBarCubit extends Cubit<int> {
     _jumpToPage(index, onJumpDone: onJumpDone);
   }
 
-  void _jumpToPage(
-    int index, {
-    VoidCallback? onJumpDone,
-  }) {
+  void _jumpToPage(int index, {VoidCallback? onJumpDone}) {
     controller.jumpToPage(index);
     safeEmit(index);
     onJumpDone?.call();
@@ -43,6 +37,7 @@ class BottomBarCubit extends Cubit<int> {
             .get<SharedPreferencesManager>()
             .getString(MAIN_PAGE_KEY) ??
         '';
+
     return _getIndexPageByType(mainPage);
   }
 
@@ -50,18 +45,23 @@ class BottomBarCubit extends Cubit<int> {
     if (mainPageType == MainPageType.home.toString()) {
       return MainPageType.home.index;
     }
+
     if (mainPageType == MainPageType.digitalSign.toString()) {
       return MainPageType.digitalSign.index;
     }
+
     if (mainPageType == MainPageType.document.toString()) {
       return MainPageType.document.index;
     }
+
     if (mainPageType == MainPageType.mission.toString()) {
       return MainPageType.mission.index;
     }
+
     if (mainPageType == MainPageType.other.toString()) {
       return MainPageType.other.index;
     }
+
     return MainPageType.home.index;
   }
 }

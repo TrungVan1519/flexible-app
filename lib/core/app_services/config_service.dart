@@ -4,7 +4,7 @@ import 'package:v_office_base/base/extension/extension.dart';
 import 'package:v_office_base/base/extension/string.dart';
 
 class ConfigService {
-  /// Define multiple ENVIRONMENT: Product, Stagging, Debug,...
+  /// Define multiple ENVIRONMENT: Product, Staging, Debug,...
   String get environmentName {
     return appFlavor.orEmpty;
   }

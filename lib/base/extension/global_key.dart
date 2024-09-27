@@ -23,7 +23,6 @@ extension GlobalKeyEx on GlobalKey {
   }
 }
 
-
 extension GlobalKeyExtension on GlobalKey {
   Rect? get globalPaintBounds {
     final renderObject = currentContext?.findRenderObject();

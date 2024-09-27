@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import 'loading_overlay_custom.dart';
 
 bool isLoading = false;
 
-Future<bool?> showLoading(BuildContext context,
-    {bool dismissAble = true}) async {
+Future<bool?> showLoading(
+  BuildContext context, {
+  bool dismissAble = true,
+}) async {
   if (isLoading) return true;
   isLoading = true;
   return showDialog<bool>(
@@ -16,10 +17,7 @@ Future<bool?> showLoading(BuildContext context,
     builder: (c) {
       return PopScope(
         onPopInvoked: (didPop) => dismissAble,
-        child: buildLoading(
-          true,
-          bgColor: Colors.transparent,
-        ),
+        child: buildLoading(true, bgColor: Colors.transparent),
       );
     },
   );
@@ -27,6 +25,7 @@ Future<bool?> showLoading(BuildContext context,
 
 void dismissLoading(BuildContext context) {
   if (!isLoading) return;
+
   isLoading = false;
   if (Navigator.of(context).canPop()) {
     Navigator.pop(context);

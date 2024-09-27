@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:flutter/widgets.dart';
 import 'package:get_it/get_it.dart';
 import 'package:v_office_base/core/app_services/navigation_service.dart';
@@ -34,6 +35,7 @@ class GradientCircularProgressPainter extends CustomPainter {
     required this.gradientColors,
     required this.strokeWidth,
   });
+
   final double radius;
   final List<Color> gradientColors;
   final double strokeWidth;
@@ -79,6 +81,7 @@ class _FullScreenLoaderState extends State<FullScreenLoader>
   @override
   void initState() {
     super.initState();
+
     _animationController =
         AnimationController(duration: const Duration(seconds: 1), vsync: this);
     _animationController.repeat();
@@ -87,32 +90,31 @@ class _FullScreenLoaderState extends State<FullScreenLoader>
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: const BoxDecoration(color: Color.fromRGBO(0, 0, 0, 0.5)),
-        child: Center(
-          child: RotationTransition(
-            turns: Tween(begin: 0.0, end: 1.0).animate(_animationController),
-            child: const GradientCircularProgressIndicator(
-              radius: 20,
-              gradientColors: [
-                Color.fromRGBO(234, 17, 127, 1),
-                Color.fromRGBO(255, 90, 0, 1),
-                Color.fromRGBO(250, 204, 30, 1),
-              ],
-              strokeWidth: 4.0,
-            ),
+      decoration: const BoxDecoration(color: Color.fromRGBO(0, 0, 0, 0.5)),
+      child: Center(
+        child: RotationTransition(
+          turns: Tween(begin: 0.0, end: 1.0).animate(_animationController),
+          child: const GradientCircularProgressIndicator(
+            radius: 20,
+            gradientColors: [
+              Color.fromRGBO(234, 17, 127, 1),
+              Color.fromRGBO(255, 90, 0, 1),
+              Color.fromRGBO(250, 204, 30, 1),
+            ],
+            strokeWidth: 4.0,
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
 
 class LoadingOverlay {
   OverlayEntry? _overlay;
-
   LoadingOverlay();
 
   void showDialog() {
     final context = GetIt.instance<NavigationService>().navigatorContext;
-
     show(context);
   }
 
@@ -121,7 +123,7 @@ class LoadingOverlay {
       _overlay = OverlayEntry(
         builder: (context) => const FullScreenLoader(),
       );
-      Overlay.of(context)!.insert(_overlay!);
+      Overlay.of(context).insert(_overlay!);
     }
   }
 

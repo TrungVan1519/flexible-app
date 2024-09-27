@@ -4,9 +4,9 @@ part 'base_response.g.dart';
 
 @JsonSerializable(genericArgumentFactories: true)
 class BaseResponseModel<T> {
-  final BaseGenericResultModel<T> result;
-
   BaseResponseModel({required this.result});
+
+  final BaseGenericResultModel<T> result;
 
   Map<String, dynamic> toJson(Object? Function(T value) toJsonT) =>
       _$BaseResponseModelToJson<T>(this, toJsonT);
@@ -18,12 +18,15 @@ class BaseResponseModel<T> {
 
 @JsonSerializable(genericArgumentFactories: true)
 class BaseGenericResultModel<T> {
+  BaseGenericResultModel({
+    required this.mess,
+    required this.data,
+    this.timestamp,
+  });
+
   final BaseMessModel mess;
   final T data;
   final int? timestamp;
-
-  BaseGenericResultModel(
-      {required this.mess, required this.data, this.timestamp});
 
   Map<String, dynamic> toJson(Object? Function(T value) toJsonT) =>
       _$BaseGenericResultModelToJson(this, toJsonT);
@@ -35,10 +38,10 @@ class BaseGenericResultModel<T> {
 
 @JsonSerializable()
 class BaseMessModel {
+  BaseMessModel({required this.errorCode, required this.message});
+
   final int errorCode;
   final String message;
-
-  BaseMessModel({required this.errorCode, required this.message});
 
   Map<String, dynamic> toJson() => _$BaseMessModelToJson(this);
 

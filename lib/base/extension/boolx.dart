@@ -30,7 +30,7 @@ class BoolHelper {
     try {
       return !value.isEmpty;
     } catch (errorOnIsEmpty) {
-      // Enpty on purpose
+      // Empty on purpose
     }
 
     return true;

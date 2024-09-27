@@ -28,6 +28,7 @@ class Throttling extends Stream<bool> implements Sink<Function> {
     if (!_isReady) {
       return null;
     }
+
     _stateSC.sink.add(false);
     _isReady = false;
     _waiter.then((_) {
@@ -41,9 +42,9 @@ class Throttling extends Stream<bool> implements Sink<Function> {
 
   @override
   StreamSubscription<bool> listen(
-    void onData(bool event)?, {
+    void Function(bool event)? onData, {
     Function? onError,
-    void onDone()?,
+    void Function()? onDone,
     bool? cancelOnError,
   }) =>
       _stateSC.stream.listen(

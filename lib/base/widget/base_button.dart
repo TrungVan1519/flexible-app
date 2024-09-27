@@ -3,18 +3,18 @@ import 'package:v_office_base/base/theme/utils.dart';
 import 'package:v_office_base/base/theme/vo_color.dart';
 
 class IButton extends StatefulWidget {
-  factory IButton.primaryNormal(
-          {required String title,
-          VoidCallback? onPress,
-          double? fontSize,
-          Color? backgroundColor,
-          bool isDisable = false,
-          double? radius = 8,
-          Color? textColor,
-          TextStyle? textStyle,
-          bool isLoading = false,
-          EdgeInsets? contentPadding =
-              const EdgeInsets.symmetric(horizontal: 12)}) =>
+  factory IButton.primaryNormal({
+    required String title,
+    VoidCallback? onPress,
+    double? fontSize,
+    Color? backgroundColor,
+    bool isDisable = false,
+    double? radius = 8,
+    Color? textColor,
+    TextStyle? textStyle,
+    bool isLoading = false,
+    EdgeInsets? contentPadding = const EdgeInsets.symmetric(horizontal: 12),
+  }) =>
       IButton(
         title: title,
         color: backgroundColor ?? VOColors.red5,
@@ -28,14 +28,15 @@ class IButton extends StatefulWidget {
         textStyle: textStyle,
       );
 
-  factory IButton.primaryLarge(
-          {required String title,
-          Color? backgroundColor,
-          Color? textColor,
-          VoidCallback? onPress,
-          bool isLoading = false,
-          bool isNormal = false,
-          bool isDisable = false}) =>
+  factory IButton.primaryLarge({
+    required String title,
+    Color? backgroundColor,
+    Color? textColor,
+    VoidCallback? onPress,
+    bool isLoading = false,
+    bool isNormal = false,
+    bool isDisable = false,
+  }) =>
       IButton(
           title: title,
           color: backgroundColor ?? VOColors.red5,
@@ -45,19 +46,19 @@ class IButton extends StatefulWidget {
           isDisable: isDisable,
           isLoading: isLoading);
 
-  factory IButton.outline(
-          {required String title,
-          VoidCallback? onPress,
-          bool isLoading = false,
-          bool outline = true,
-          double? radius = 8,
-          Color? textColor,
-          Color? borderColor,
-          Color backgroundColor = VOColors.white,
-          bool isDisable = false,
-          TextStyle? textStyle,
-          EdgeInsets? contentPadding =
-              const EdgeInsets.symmetric(horizontal: 16)}) =>
+  factory IButton.outline({
+    required String title,
+    VoidCallback? onPress,
+    bool isLoading = false,
+    bool outline = true,
+    double? radius = 8,
+    Color? textColor,
+    Color? borderColor,
+    Color backgroundColor = VOColors.white,
+    bool isDisable = false,
+    TextStyle? textStyle,
+    EdgeInsets? contentPadding = const EdgeInsets.symmetric(horizontal: 16),
+  }) =>
       IButton(
         title: title,
         color: backgroundColor,
@@ -115,7 +116,7 @@ class _IButtonState extends State<IButton> {
     return SizedBox(
       height: widget.isNormal ? 24 : 30.0,
       width: widget.isNormal ? 24 : 30.0,
-      child: CircularProgressIndicator(
+      child: const CircularProgressIndicator(
         strokeWidth: 2,
         color: VOColors.red5,
       ),
@@ -142,31 +143,31 @@ class _IButtonState extends State<IButton> {
           },
           radius: widget.radius ?? 24,
           child: ConstrainedBox(
-            constraints: BoxConstraints(
-              minWidth: widget.minWidth ?? 88,
-            ),
+            constraints: BoxConstraints(minWidth: widget.minWidth ?? 88),
             child: Container(
               padding: widget.contentPadding,
               decoration: BoxDecoration(
-                  // color: widget.color,
-                  borderRadius: BorderRadius.circular(widget.radius ?? 24),
-                  border: widget.outline == true
-                      ? Border.all(color: VOColors.red5)
-                      : null),
+                // color: widget.color,
+                borderRadius: BorderRadius.circular(widget.radius ?? 24),
+                border: widget.outline == true
+                    ? Border.all(color: VOColors.red5)
+                    : null,
+              ),
               height: height,
               child: Center(
-                  child: widget.isLoading
-                      ? _loading()
-                      : Text(
-                          widget.title,
-                          textAlign: TextAlign.center,
-                          style: widget.textStyle ??
-                              textStyle!.copyWith(
-                                color: widget.textColor ??
-                                    ThemeUtils.color.onPrimary.withOpacity(1),
-                                fontSize: widget.fontSize,
-                              ),
-                        )),
+                child: widget.isLoading
+                    ? _loading()
+                    : Text(
+                        widget.title,
+                        textAlign: TextAlign.center,
+                        style: widget.textStyle ??
+                            textStyle!.copyWith(
+                              color: widget.textColor ??
+                                  ThemeUtils.color.onPrimary.withOpacity(1),
+                              fontSize: widget.fontSize,
+                            ),
+                      ),
+              ),
             ),
           ),
         ),

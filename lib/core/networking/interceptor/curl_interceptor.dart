@@ -2,12 +2,11 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:intl/intl.dart';
-
 
 class CurlInterceptor extends Interceptor {
   @override
-  Future<void> onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+  Future<void> onRequest(
+      RequestOptions options, RequestInterceptorHandler handler) async {
     try {
       log('COPY CURL and send it to BE');
       log(cURLRepresentation(options, false));
@@ -82,7 +81,6 @@ String cURLRepresentation(RequestOptions options, bool notIncludeAuthor) {
     });
   }
 
-
   if (options.method.toUpperCase() != 'GET') {
     if (options.data is FormData) {
       components.add(extractFormData({}, options.data));
@@ -101,7 +99,6 @@ String cURLRepresentation(RequestOptions options, bool notIncludeAuthor) {
 extension Curl on RequestOptions {
   String toCurlCmd() {
     String cmd = 'curl';
-
     String header = headers
         .map((key, value) {
           if (key == 'content-type' &&
@@ -113,6 +110,7 @@ extension Curl on RequestOptions {
         .values
         .join(' ');
     String url = '$baseUrl$path';
+
     if (queryParameters.isNotEmpty) {
       String query = queryParameters
           .map((key, value) {
@@ -123,6 +121,7 @@ extension Curl on RequestOptions {
 
       url += (url.contains('?')) ? query : '?$query';
     }
+
     if (method == 'GET') {
       cmd += " $header '$url'";
     } else {
@@ -153,14 +152,17 @@ String extractFormData(Map<String, dynamic> files, FormData fData) {
     MultipartFile file = element.value;
     files[element.key] = '@${file.filename}';
   }
+
   for (var element in fData.fields) {
     files[element.key] = element.value;
   }
+
   if (files.isNotEmpty) {
     return files
         .map((key, value) => MapEntry(key, "-F '$key=$value'"))
         .values
         .join(' ');
   }
+
   return '';
 }

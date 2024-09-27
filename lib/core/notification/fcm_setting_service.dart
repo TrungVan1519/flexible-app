@@ -1,8 +1,10 @@
 import 'dart:async';
+
 import 'package:permission_handler/permission_handler.dart';
 
 class FCMSettingService {
   FCMSettingService._internal();
+
   static FCMSettingService get instance => FCMSettingService._internal();
 
   final _onChangePermission = StreamController<bool>.broadcast();

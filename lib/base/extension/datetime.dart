@@ -1,6 +1,7 @@
-import 'package:timezone/data/latest.dart';
-import 'package:timezone/timezone.dart';
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:intl/intl.dart';
+import 'package:timezone/timezone.dart';
 
 extension IBDateTime on DateTime? {
   DateTime get dateTimeToGMT7 {
@@ -10,11 +11,11 @@ extension IBDateTime on DateTime? {
   }
 
   DateTime? get removeTimeDate {
-    final _year = this?.year;
-    final _month = this?.month;
-    final _day = this?.day;
-    if (this != null && _year != null) {
-      return DateTime(_year, _month ?? 1, _day ?? 1, 0, 0, 0, 0, 0);
+    final year = this?.year;
+    final month = this?.month;
+    final day = this?.day;
+    if (this != null && year != null) {
+      return DateTime(year, month ?? 1, day ?? 1, 0, 0, 0, 0, 0);
     }
     return null;
   }
@@ -54,8 +55,7 @@ extension DateTimeEx on DateTime {
 
 extension DateOnlyCompare on DateTime {
   bool isSameDate(DateTime other) {
-    return year == other.year && month == other.month
-           && day == other.day;
+    return year == other.year && month == other.month && day == other.day;
   }
 }
 

@@ -21,24 +21,19 @@ class VOColors {
   static const frameLightColor = Color(0xffF5F7FA);
   static const frameTabletColor = Color(0xffF3F4F6);
 
-  static const Color dmPrimary = Color.fromRGBO(11, 11, 37, 1); //#0B0B25
-  static const Color dmNeutralPrimary =
-      Color.fromRGBO(110, 110, 202, 1); //#6E6ECA
-  static const Color lmNeutralPrimary =
-      Color.fromRGBO(94, 92, 194, 1); //#5E5CC2
-  static const Color dmSecondary = Color.fromRGBO(20, 20, 50, 1); //#141432
-  static const Color dmSecondaryLighter =
-      Color.fromRGBO(29, 29, 64, 1); //#1D1D40
-  static const Color dmField = Color.fromRGBO(35, 35, 59, 1); //#23233B
-  static const Color dmFieldDisable = Color.fromRGBO(25, 25, 42, 1); //#19192A
+  static const Color dmPrimary = Color(0xFF0B0B25);
+  static const Color dmNeutralPrimary = Color(0xFF6E6ECA);
+  static const Color lmNeutralPrimary = Color(0xFF5E5CC2);
+  static const Color dmSecondary = Color(0xFF141432);
+  static const Color dmSecondaryLighter = Color(0xFF1D1D40);
+  static const Color dmField = Color(0xFF23233B);
+  static const Color dmFieldDisable = Color(0xFF19192A);
 
-  static const Color lmPrimary = Color.fromRGBO(255, 255, 255, 1); //#FFFFFF
-  static const Color lmSecondary = Color.fromRGBO(240, 240, 242, 1); //#F0F0F2
-  static const Color lmSecondaryLighter =
-      Color.fromRGBO(245, 245, 245, 1); //#F5F5F5
-  static const Color lmField = Color.fromRGBO(240, 240, 242, 1); //#F0F0F2
-  static const Color lmFieldDisable =
-      Color.fromRGBO(215, 215, 215, 1); //#D7D7D7
+  static const Color lmPrimary = Color(0xFFFFFFFF);
+  static const Color lmSecondary = Color(0xFFF0F0F2);
+  static const Color lmSecondaryLighter = Color(0xFFF5F5F5);
+  static const Color lmField = Color(0xFFF0F0F2);
+  static const Color lmFieldDisable = Color(0xFFD7D7D7);
 
   /// Dark
   static const primaryDarkTextColor = Color(0xffDCDCDC);
@@ -59,8 +54,8 @@ class VOColors {
   static const frameColor2 = Color(0xffF1F5F8);
   static const frameMainColor = Color(0xff121723);
   static const neutralTablet = Color(0xff374151);
-  static const Color black10 = Color.fromRGBO(223, 225, 230, 1); //#DFE1E6
-  static const Color black7 = Color.fromRGBO(84, 87, 95, 1); //#54575F
+  static const Color black10 = Color(0xFFDFE1E6);
+  static const Color black7 = Color(0xFF54575F);
 
   /// Colors red
   static const red1 = Color(0xff5F0014);
@@ -136,13 +131,13 @@ class VOColors {
   static const white4 = Color(0xffE5E5E5);
   static const white5 = Color(0xffF4F9FA);
   static const white6 = Color(0xffDFE0EB);
-  static const white7 = Color.fromRGBO(234, 236, 239, 0.7);
+  static const white7 = Color(0xB1EAECEF);
   static const white8 = Color(0xffD4D4DB);
   static const white9 = Color(0xffF4F4F4);
-  static const white10 = Color.fromRGBO(234, 236, 239, 0.1);
+  static const white10 = Color(0x18EAECEF);
   static const white11 = Color(0xffe8e8e8);
   static const white12 = Color(0xffe6e6e6);
-  static const white50 = Color.fromRGBO(234, 236, 239, 0.5);
+  static const white50 = Color(0x7EEAECEF);
 
   //Grey.
   static const grey1 = Color(0xFFE0E0E0);
@@ -195,7 +190,7 @@ class VOColors {
   static const black3 = Color(0xff323F4B);
   static const black4 = Color(0xff778390);
   static const black5 = Color(0xff262626);
-  static const black50 = Color.fromRGBO(84, 87, 95, 1); //#54575F
+  static const black50 = Color(0xFF54575F);
 
   // Yellow
   static const yellow = Color(0xFFFFFDE7);
@@ -212,7 +207,7 @@ class VOColors {
   static const yellow11 = Color(0xffFDE27F);
   static const yellow12 = Color(0xffB45309);
 
-  static Color get commonBgColor => const Color.fromARGB(255, 237, 243, 249);
+  static Color get commonBgColor => const Color(0xFFEDF3F9);
 
   static const hintColor = Color(0xff848E94);
 
@@ -224,24 +219,19 @@ class VOColors {
 
   static Color get unActiveRadio => const Color(0xFF848E94);
 
-  static const Color neutralRed = Color.fromRGBO(238, 63, 63, 1); //#EE3F3F
+  static const Color neutralRed = Color(0xFFEE3F3F);
 
-  static const Color neutralGreen = Color.fromRGBO(1, 194, 127, 1); //#01C27F
+  static const Color neutralGreen = Color(0xFF01C27F);
 
-  static const Color neutralBlue = Color.fromRGBO(80, 150, 255, 1); //#5096FF
+  static const Color neutralBlue = Color(0xFF5096FF);
 
-  static const Color lmKeyboardLighter =
-      Color.fromRGBO(240, 240, 242, 1); //#F0F0F2
+  static const Color lmKeyboardLighter = Color(0xFFF0F0F2);
 
-  static const Color lmToastBackground =
-      Color.fromRGBO(217, 217, 217, 1); //#D9D9D9
+  static const Color lmToastBackground = Color(0xFFD9D9D9);
 
-  static const Color lmNoteBackground =
-      Color.fromRGBO(236, 236, 236, 1); //#ECECEC
+  static const Color lmNoteBackground = Color(0xFFECECEC);
 
-  static const Color lmRedIndexChart =
-      Color.fromRGBO(251, 130, 130, 1); //#FB8282
+  static const Color lmRedIndexChart = Color(0xFFFB8282);
 
-  static const Color lmSelectTextBackground =
-      Color.fromRGBO(215, 215, 252, 1); //#D7D7FC
+  static const Color lmSelectTextBackground = Color(0xFFD7D7FC);
 }
