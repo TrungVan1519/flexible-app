@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000209">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: Switch to android build_prod lane" time="7.6e-05">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: flutter clean" time="5.421108">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: flutter build apk --release --flavor prod" time="47.587374">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: cp ../build/app/outputs/apk/prod/release/app-prod-release.apk ../build/app/outputs/apk/prod/release/20240817-voffice-prod.apk" time="0.015688">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="5: open ../build/app/outputs/apk/prod/release" time="0.197618">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="6: appcenter_upload" time="34.218481">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>

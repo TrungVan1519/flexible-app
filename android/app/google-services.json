@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "106603697185",
+    "project_id": "vo-base-notification",
+    "storage_bucket": "vo-base-notification.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:106603697185:android:a31ee115260462ef6abf60",
+        "android_client_info": {
+          "package_name": "com.example.vOfficeBase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxApk2K_qykhDpRGnxS9EwsbQMSvWqp0k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

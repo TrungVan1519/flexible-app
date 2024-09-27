@@ -1,0 +1,88 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Build Flutter APK"
+  lane :build_dev do
+    sh "flutter clean"
+    sh "flutter build apk --release --flavor dev"
+  end
+  lane :build_uat do
+    sh "flutter clean"
+    sh "flutter build apk --release --flavor uat"
+  end
+  lane :build_prod do
+    sh "flutter clean"
+    sh "flutter build apk --release --flavor prod"
+  end
+  desc "build, export apk and upload to app center"
+  lane :android_build_dev do |options|
+    target_env = "dev"
+    build_dev
+    current_date = Time.new.strftime('%Y%m%d')
+    new_apk_name = "#{current_date}-voffice-#{target_env}"
+    
+    sh('cp', "../build/app/outputs/apk/dev/release/app-dev-release.apk", "../build/app/outputs/apk/dev/release/#{new_apk_name}.apk")
+    sh('open', '../build/app/outputs/apk/dev/release')
+    appcenter_upload(
+      api_token: "a093d5edbf3a60ddae42b83e655005e44780184d", 
+      owner_name: "LamDoTest",
+      app_name: 'vo_base_android',
+      file: "build/app/outputs/apk/dev/release/#{new_apk_name}.apk",
+      notify_testers: true,
+      destinations: "*"
+    )
+  end
+  lane :android_build_prod do |options|
+    target_env = "prod"
+    build_prod
+    current_date = Time.new.strftime('%Y%m%d')
+    new_apk_name = "#{current_date}-voffice-#{target_env}"
+    
+    sh('cp', "../build/app/outputs/apk/prod/release/app-prod-release.apk", "../build/app/outputs/apk/prod/release/#{new_apk_name}.apk")
+    sh('open', '../build/app/outputs/apk/prod/release')
+    appcenter_upload(
+      api_token: "a093d5edbf3a60ddae42b83e655005e44780184d", 
+      owner_name: "LamDoTest",
+      app_name: 'vo_base_android',
+      file: "build/app/outputs/apk/prod/release/#{new_apk_name}.apk",
+      notify_testers: true,
+      destinations: "*"
+    )
+  end
+end
+
+platform :ios do
+  desc "Build Flutter IPA"
+  lane :build_dev do
+    sh "flutter clean"
+    sh "flutter build ios --release"
+  end
+  desc "build, export ipa and upload to app center (VTIT)"
+  lane :ios_build_dev do |options|
+    target_env = "dev"
+    build_dev
+    appcenter_upload(
+      api_token: "09ae14016486be22b473e5dae6b0789db34cf83f", #Voffice-Dev-VTIT
+      owner_name: "vtit",
+      app_name: 'voffice_4_0',
+      file: "../build/ios/Release-iphoneos/Runner",
+      notify_testers: true,
+      destinations: "*"
+    )
+  end
+end
