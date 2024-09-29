@@ -2,17 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:v_office_base/base/theme/utils.dart';
-import 'package:v_office_base/base/utils/d_print.dart';
 import 'package:v_office_base/base/utils/enum.dart';
 import 'package:v_office_base/base/widget/toast_widget.dart';
 import 'package:v_office_base/core/app_services/app_services.dart';
 import 'package:v_office_base/core/app_services/bottom_bar_cubit.dart';
 import 'package:v_office_base/generated/l10n.dart';
 import 'package:v_office_base/presentation/dashboard/widget/icon_tab_bar.dart';
-import 'package:v_office_base/presentation/document/screen/document_screen.dart';
 import 'package:v_office_base/presentation/home/screen/home_screen.dart';
-import 'package:v_office_base/presentation/mission/screen/mission_screen.dart';
-import 'package:v_office_base/presentation/sign/screen/sign_screen.dart';
 
 import '../../../gen/assets.gen.dart';
 
@@ -44,9 +40,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
             onPageChanged: _cubit.onPageChanged,
             children: const [
               HomeScreen(),
-              SignScreen(),
-              DocumentScreen(),
-              MissionScreen()
             ],
           ),
           bottomNavigationBar: _buildBottomNavigation(context, index),
