@@ -1,5 +1,3 @@
-// import 'package:alice/alice.dart';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -52,18 +50,16 @@ class ModuleManagement {
 
   static final ModuleManagement _singleton = ModuleManagement._internal();
 
-  final List<BaseModule> _modules = <BaseModule>[];
-
   final GetIt serviceLocator = GetIt.instance;
 
-  void addModules(List<BaseModule> modules) {
-    _modules.addAll(modules);
-  }
+  final _modules = <BaseModule>[];
+
+  void addModules(List<BaseModule> modules) => _modules.addAll(modules);
 
   List<BaseModule> getModules() => _modules;
 
   Route<dynamic> onGenerateRoute(RouteSettings settings) {
-    for (final BaseModule module in _modules) {
+    for (final module in _modules) {
       if ((Uri.parse(settings.name ?? '').path).contains(module.modulePath())) {
         return module.onGenerateRoute(settings);
       }
@@ -73,17 +69,14 @@ class ModuleManagement {
   }
 
   List<LocalizationsDelegate<dynamic>> localizationsDelegates() {
-    final result = <LocalizationsDelegate<dynamic>>[];
-    result.addAll(
-      [
-        const AppLocalizationDelegate(),
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate
-      ],
-    );
+    final result = <LocalizationsDelegate<dynamic>>[
+      const AppLocalizationDelegate(),
+      GlobalMaterialLocalizations.delegate,
+      GlobalWidgetsLocalizations.delegate,
+      GlobalCupertinoLocalizations.delegate
+    ];
 
-    for (final BaseModule module in _modules) {
+    for (final module in _modules) {
       result.addAll(module.localizationsDelegates());
     }
 
@@ -93,10 +86,10 @@ class ModuleManagement {
   Future<void> injectDependencies() async {
     serviceLocator.registerLazySingleton(() => NavigationService());
 
-    final sharedPreferences = await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance();
 
     serviceLocator.registerLazySingleton(
-      () => SharedPreferencesManager(sharedPreferences: sharedPreferences),
+      () => SharedPreferencesManager(sharedPreferences: prefs),
     );
 
     serviceLocator.registerLazySingleton(
@@ -146,7 +139,7 @@ class ModuleManagement {
 
     serviceLocator.registerLazySingleton<Dio>(() => dio);
 
-    for (final BaseModule module in _modules) {
+    for (final module in _modules) {
       module.injectServices(serviceLocator);
     }
   }

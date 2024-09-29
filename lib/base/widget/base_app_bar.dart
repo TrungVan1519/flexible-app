@@ -75,13 +75,9 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   Widget? _buildLeadingWidget(BuildContext context) {
-    if (!automaticallyImplyLeading) {
-      return null;
-    }
+    if (!automaticallyImplyLeading) return null;
 
-    if (leading != null) {
-      return leading;
-    }
+    if (leading != null) return leading;
 
     if (isClose == true) {
       return IconButton(

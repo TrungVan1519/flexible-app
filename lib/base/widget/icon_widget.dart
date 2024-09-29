@@ -47,11 +47,12 @@ class IconWidget extends StatelessWidget {
     bool? noTintColor,
   }) =>
       IconWidget(
-          path: path,
-          color: color,
-          width: 24,
-          height: 24,
-          noTintColor: noTintColor);
+        path: path,
+        color: color,
+        width: 24,
+        height: 24,
+        noTintColor: noTintColor,
+      );
 
   factory IconWidget.ic18({
     required String path,

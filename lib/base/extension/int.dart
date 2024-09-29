@@ -1,5 +1,5 @@
 import 'package:intl/intl.dart';
-import 'package:v_office_base/base/extension/extension.dart';
+import 'package:v_office_base/base/extension/generic.dart';
 
 extension IntComas on int? {
   bool get isNullOrZero {

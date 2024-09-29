@@ -3,9 +3,9 @@ import 'dart:convert';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:v_office_base/base/utils/d_print.dart';
 
 import 'fcm_setting_service.dart';
 
@@ -18,15 +18,15 @@ class FCMService {
 
   static FCMService instance = FCMService._internal();
 
-  final _onReceiveRemoteNotif =
+  final _onReceiveRemoteNotification =
       StreamController<RemoteNotification?>.broadcast();
 
-  Stream<RemoteNotification?> get onReceiveRemoteNotif =>
-      _onReceiveRemoteNotif.stream;
+  Stream<RemoteNotification?> get onReceiveRemoteNotification =>
+      _onReceiveRemoteNotification.stream;
 
   final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
-  AndroidNotificationChannel get getNotifChannel =>
+  AndroidNotificationChannel get getNotificationChannel =>
       const AndroidNotificationChannel(
         'vo_base_channel',
         'VO Base Channel',
@@ -77,7 +77,7 @@ class FCMService {
     await flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>()
-        ?.createNotificationChannel(getNotifChannel);
+        ?.createNotificationChannel(getNotificationChannel);
   }
 
   Future _configLocalNotification() async {
@@ -95,7 +95,7 @@ class FCMService {
         // Khi click vào message từ notification trên thanh statusBar
         if (notificationResponse.notificationResponseType ==
             NotificationResponseType.selectedNotification) {
-          _onReceiveRemoteNotif.sink.add(
+          _onReceiveRemoteNotification.sink.add(
             RemoteNotification(
               title: notificationResponse.actionId,
               body: notificationResponse.payload,
@@ -109,18 +109,18 @@ class FCMService {
   void _registerMessageListener() {
     //listen foreground
     FirebaseMessaging.onMessage.listen((message) {
-      if (!_onReceiveRemoteNotif.isClosed) {
+      if (!_onReceiveRemoteNotification.isClosed) {
         final fcmData = message.notification;
-        _onReceiveRemoteNotif.sink.add(fcmData);
+        _onReceiveRemoteNotification.sink.add(fcmData);
       }
       _showNotificationWithPayload(message);
     });
 
     //listen background
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
-      if (!_onReceiveRemoteNotif.isClosed) {
+      if (!_onReceiveRemoteNotification.isClosed) {
         final fcmData = message.notification;
-        _onReceiveRemoteNotif.sink.add(fcmData);
+        _onReceiveRemoteNotification.sink.add(fcmData);
       }
     });
     FirebaseMessaging.onBackgroundMessage(
@@ -134,11 +134,13 @@ class FCMService {
     final android = message.notification?.android;
 
     const androidPlatformChannelSpecifics = AndroidNotificationDetails(
-        'vo_base_channel', 'VO Base Channel',
-        channelShowBadge: false,
-        importance: Importance.max,
-        priority: Priority.max,
-        color: Colors.blue);
+      'vo_base_channel',
+      'VO Base Channel',
+      channelShowBadge: false,
+      importance: Importance.max,
+      priority: Priority.max,
+      color: Colors.blue,
+    );
     const iosNotificationDetails = DarwinNotificationDetails(badgeNumber: 0);
     const platformChannelSpecifics = NotificationDetails(
       android: androidPlatformChannelSpecifics,
@@ -158,13 +160,9 @@ class FCMService {
 
   Future<String?> getToken() async {
     try {
-      final token = await FirebaseMessaging.instance.getToken();
-
-      return token;
+      return await FirebaseMessaging.instance.getToken();
     } catch (e) {
-      if (kDebugMode) {
-        print("getToken: $e");
-      }
+      dPrint("getToken: $e");
     }
     return null;
   }
@@ -174,10 +172,10 @@ class FCMService {
         .getInitialMessage()
         .then((RemoteMessage? message) {
       if (message != null) {
-        _onReceiveRemoteNotif.sink.add(message.notification);
+        _onReceiveRemoteNotification.sink.add(message.notification);
       }
     });
   }
 }
 
-enum FCMType { forceground, background, terminate }
+enum FCMType { foreground, background, terminate }

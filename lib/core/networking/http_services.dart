@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:v_office_base/base/constant/constant.dart';
 import 'package:v_office_base/base/constant/service_const.dart';
 import 'package:v_office_base/base/share_reference_manager.dart';
+import 'package:v_office_base/base/utils/d_print.dart';
 import 'package:v_office_base/base/utils/utils.dart';
 import 'package:v_office_base/core/networking/model/base_request_model.dart';
 
@@ -94,7 +95,7 @@ class AuthInterceptor extends Interceptor {
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     if (response.statusCode != 200) {
-      print("statusCode ${response.statusCode}");
+      dPrint("statusCode ${response.statusCode}");
     }
 
     super.onResponse(response, handler);

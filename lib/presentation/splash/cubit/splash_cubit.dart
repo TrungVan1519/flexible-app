@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:v_office_base/base/constant/constant.dart';
@@ -13,55 +11,25 @@ import 'splash_state.dart';
 class SplashCubit extends Cubit<SplashState> {
   SplashCubit() : super(SplashState.init());
 
-  AppLanguage _currLanguage = AppLanguageEx.fromValue(
-      GetIt.instance<SharedPreferencesManager>().getString(kLanguage));
-
-  AppLanguage get getCurrLanguage => _currLanguage;
-
-  AppTheme _currTheme = AppThemeEx.fromValue(
-      GetIt.instance<SharedPreferencesManager>().getString(kTheme));
-
-  AppTheme get getCurrentTheme => _currTheme;
-
-  void init() async {
-    safeEmit(SplashState.loading());
-    Future.delayed(
-      const Duration(seconds: 3),
-      () {
-        safeEmit(SplashState.goToLogin());
-      },
-    );
-  }
-
-  void goToLogin() {
-    safeEmit(SplashState.goToLogin());
-  }
-
-  void changeTheme(AppTheme appTheme) {
-    //update theme global
-    GetIt.instance<AppCubit>().changeTheme(theme: appTheme);
-
-    safeEmit(SplashState.changeTheme(appTheme));
-  }
+  AppLanguage curLang = AppLanguageEx.fromValue(
+    GetIt.instance<SharedPreferencesManager>().getString(kLanguage),
+  );
 
   void changeLanguage(AppLanguage appLanguage) {
-    //update language global
+    // todo update app language
     GetIt.instance<AppCubit>().changeLanguage(language: appLanguage);
-
     safeEmit(SplashState.changeLanguage(appLanguage));
+    curLang = appLanguage;
   }
 
-  void setLanguage(AppLanguage language) {
-    _currLanguage = language;
-  }
+  AppTheme curTheme = AppThemeEx.fromValue(
+    GetIt.instance<SharedPreferencesManager>().getString(kTheme),
+  );
 
-  void setTheme(AppTheme appTheme) {
-    _currTheme = appTheme;
-  }
-
-  @override
-  Future<void> close() {
-    // TODO: implement close
-    return super.close();
+  void changeTheme(AppTheme appTheme) {
+    // todo update app theme
+    GetIt.instance<AppCubit>().changeTheme(theme: appTheme);
+    safeEmit(SplashState.changeTheme(appTheme));
+    curTheme = appTheme;
   }
 }

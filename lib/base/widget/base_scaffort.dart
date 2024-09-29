@@ -32,9 +32,7 @@ class IBoardScaffold extends StatelessWidget {
   }
 
   Widget? _buildBottomBar(BuildContext context) {
-    if (bottomNavigationBar == null) {
-      return null;
-    }
+    if (bottomNavigationBar == null) return null;
 
     return Padding(
       padding: bottomNavigationPadding ?? const EdgeInsets.only(bottom: 16),

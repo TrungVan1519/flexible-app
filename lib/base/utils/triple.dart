@@ -6,5 +6,5 @@ class Triple<L, C, R> {
   final C center;
 
   @override
-  String toString() => 'Triple[$left, $center,  $right]';
+  String toString() => 'Triple[$left, $center, $right]';
 }

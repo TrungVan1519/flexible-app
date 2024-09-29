@@ -38,9 +38,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             physics: const NeverScrollableScrollPhysics(),
             controller: _cubit.controller,
             onPageChanged: _cubit.onPageChanged,
-            children: const [
-              HomeScreen(),
-            ],
+            children: const [HomeScreen()],
           ),
           bottomNavigationBar: _buildBottomNavigation(context, index),
         );
@@ -58,6 +56,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         builder: (context, state) {
           final screenSize = MediaQuery.of(context).size;
           final showUnselectedLabels = screenSize.width >= 320;
+
           return BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             showSelectedLabels: true,
@@ -69,13 +68,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
             unselectedLabelStyle: ThemeUtils.textStyle.smallTextRegular,
             items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                  icon: IconTabBar(
-                    path: index == MainPageType.home.tabValue
-                        ? Assets.icons.icBottomHomeFilled
-                        : Assets.icons.icHome,
-                    isActive: index == MainPageType.home.tabValue,
-                  ),
-                  label: VOLocale.current.home),
+                icon: IconTabBar(
+                  path: index == MainPageType.home.tabValue
+                      ? Assets.icons.icBottomHomeFilled
+                      : Assets.icons.icHome,
+                  isActive: index == MainPageType.home.tabValue,
+                ),
+                label: VOLocale.current.home,
+              ),
               BottomNavigationBarItem(
                 icon: IconTabBar(
                     path: index == MainPageType.digitalSign.tabValue

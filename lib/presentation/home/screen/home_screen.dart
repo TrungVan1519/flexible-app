@@ -54,9 +54,7 @@ class _HomeBodyState extends State<HomeBody> {
             color: ThemeUtils.color.background,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildUserInfo(),
-              ],
+              children: [_buildUserInfo()],
             ),
           );
         },
@@ -66,6 +64,7 @@ class _HomeBodyState extends State<HomeBody> {
 
   Widget _buildUserInfo() {
     final userInfoModel = context.read<HomeCubit>().userInfoModel;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -73,9 +72,7 @@ class _HomeBodyState extends State<HomeBody> {
           "${VOLocale.current.hello}, ${userInfoModel?.displayName}",
           style: ThemeUtils.textStyle.mediumTextBold,
         ),
-        const SizedBox(
-          height: 6,
-        ),
+        const SizedBox(height: 6),
         Text(
           "${userInfoModel?.displayJobTitle}",
           style: ThemeUtils.textStyle.subText!,

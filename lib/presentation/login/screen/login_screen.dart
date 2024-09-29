@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:v_office_base/base/constant/constant.dart';
-import 'package:v_office_base/base/extension/extension.dart';
+import 'package:v_office_base/base/extension/contextx.dart';
+import 'package:v_office_base/base/extension/string.dart';
 import 'package:v_office_base/base/share_reference_manager.dart';
 import 'package:v_office_base/base/theme/utils.dart';
 import 'package:v_office_base/base/utils/utils.dart';
@@ -29,11 +30,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController urlController = TextEditingController();
-
-  final TextEditingController userController = TextEditingController();
-
-  final TextEditingController passController = TextEditingController();
+  final urlController = TextEditingController();
+  final userController = TextEditingController();
+  final passController = TextEditingController();
 
   @override
   void initState() {
@@ -45,6 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     double imageBgHeight = Utils.I.getSize.height * 0.45;
+
     return Scaffold(
       backgroundColor: ThemeUtils.color.background,
       body: BlocListener<LoginCubit, LoginState>(
@@ -58,9 +58,8 @@ class _LoginScreenState extends State<LoginScreen> {
         },
         child: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
+            children: [
               Assets.images.bgLogin
                   .image(width: Utils.I.getSize.width, height: imageBgHeight),
               Row(
@@ -68,41 +67,37 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: Text(VOLocale.current.login,
-                        style: ThemeUtils.textStyle.mediumTextBold!.copyWith(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w600,
-                        )),
+                    child: Text(
+                      VOLocale.current.login,
+                      style: ThemeUtils.textStyle.mediumTextBold!.copyWith(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   ),
                   _buildChangeLanguage(context),
                 ],
               ),
-              const SizedBox(
-                height: 16,
-              ),
+              const SizedBox(height: 16),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildInputSection(),
-                    const SizedBox(
-                      height: 5,
-                    ),
+                    const SizedBox(height: 5),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           VOLocale.current.login_forgot_pass,
-                          style: ThemeUtils.textStyle.mediumTextBold!.copyWith(
-                            fontSize: 14,
-                          ),
+                          style: ThemeUtils.textStyle.mediumTextBold!
+                              .copyWith(fontSize: 14),
                         ),
                         Text(
                           VOLocale.current.change_password,
-                          style: ThemeUtils.textStyle.mediumTextBold!.copyWith(
-                            fontSize: 14,
-                          ),
+                          style: ThemeUtils.textStyle.mediumTextBold!
+                              .copyWith(fontSize: 14),
                         ),
                       ],
                     ),
@@ -112,19 +107,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     _buildLoginButton(
                       onLogin: () {
                         context.read<LoginCubit>().handleLogin(
-                            userController.text.trim(),
-                            passController.text.trim());
+                              userController.text.trim(),
+                              passController.text.trim(),
+                            );
                       },
                     ),
-                    const SizedBox(
-                      height: 16,
-                    ),
+                    const SizedBox(height: 16),
                     _buildLoginWithBiometric(onLoginWithBiometric: () {
                       // controller.onLoginWithBiometric();
                     }),
-                    const SizedBox(
-                      height: 16,
-                    ),
+                    const SizedBox(height: 16),
                   ],
                 ),
               ),
@@ -141,13 +133,8 @@ class _LoginScreenState extends State<LoginScreen> {
         TextField(
           decoration: const InputDecoration(
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(16.0),
-              ),
-              borderSide: BorderSide(
-                width: 0,
-                style: BorderStyle.none,
-              ),
+              borderRadius: BorderRadius.all(Radius.circular(16.0)),
+              borderSide: BorderSide(width: 0, style: BorderStyle.none),
             ),
             filled: true,
             hintStyle: TextStyle(
@@ -171,13 +158,8 @@ class _LoginScreenState extends State<LoginScreen> {
         TextField(
           decoration: InputDecoration(
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(16.0),
-              ),
-              borderSide: BorderSide(
-                width: 0,
-                style: BorderStyle.none,
-              ),
+              borderRadius: BorderRadius.all(Radius.circular(16.0)),
+              borderSide: BorderSide(width: 0, style: BorderStyle.none),
             ),
             filled: true,
             hintStyle: TextStyle(
@@ -202,15 +184,12 @@ class _LoginScreenState extends State<LoginScreen> {
           builder: (context, state) {
             bool isShowPassword = false;
 
-            if (state is ShowPassword) {
-              isShowPassword = state.isShow;
-            }
+            if (state is ShowPassword) isShowPassword = state.isShow;
+
             return TextField(
               decoration: InputDecoration(
                 border: const OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(16.0),
-                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(16.0)),
                   borderSide: BorderSide(
                     width: 0,
                     style: BorderStyle.none,
@@ -245,7 +224,7 @@ class _LoginScreenState extends State<LoginScreen> {
               obscuringCharacter: '●',
             );
           },
-        )
+        ),
       ],
     );
   }
@@ -274,8 +253,9 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildLoginWithBiometric(
-      {required void Function() onLoginWithBiometric}) {
+  Widget _buildLoginWithBiometric({
+    required void Function() onLoginWithBiometric,
+  }) {
     return InkWell(
       onTap: onLoginWithBiometric,
       child: Padding(
@@ -283,11 +263,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            IconWidget(
-              path: Assets.icons.icBiometric,
-              width: 32,
-              height: 32,
-            ),
+            IconWidget(path: Assets.icons.icBiometric, width: 32, height: 32),
             const SizedBox(width: 16),
             Text(
               VOLocale.current.lb_login_biometric,
@@ -300,14 +276,14 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildChangeLanguage(BuildContext context) {
-    final currentLanguage =
+    final curLang =
         GetIt.instance<SharedPreferencesManager>().getString(kLanguage);
 
-    AppLanguage appLanguage = AppLanguageEx.fromValue(currentLanguage);
+    AppLanguage appLanguage = AppLanguageEx.fromValue(curLang);
 
     return GestureDetector(
       onTap: () {
-        if (currentLanguage == AppLanguage.en.keyValue) {
+        if (curLang == AppLanguage.en.keyValue) {
           appLanguage = AppLanguage.vi;
         } else {
           appLanguage = AppLanguage.en;
@@ -332,20 +308,22 @@ class _LoginScreenState extends State<LoginScreen> {
     dismissLoading(context);
   }
 
-  void _handleSuccess(
-    UserInfoEntity? userInfoEntity,
-  ) {
+  void _handleSuccess(UserInfoEntity? userInfoEntity) {
     try {
-      GetIt.instance<SharedPreferencesManager>()
-          .putString(USER_INFO, jsonEncode(userInfoEntity?.toJson()));
+      GetIt.instance<SharedPreferencesManager>().putString(
+        USER_INFO,
+        jsonEncode(userInfoEntity?.toJson()),
+      );
 
       GetIt.instance<ToastWidget>().showToastCenterSuccess(
-          message: VOLocale.current
-              .welcome_employee(userInfoEntity?.fullName ?? ""));
+        message: VOLocale.current.welcome_employee(
+          userInfoEntity?.fullName ?? "",
+        ),
+      );
 
       dismissLoading(context);
 
-      Navigator.of(context).pushNamed(DashboardConst.dashboardScreen);
+      context.toNamed(DashboardConst.dashboardScreen);
     } catch (e) {
       dismissLoading(context);
 

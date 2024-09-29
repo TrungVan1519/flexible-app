@@ -38,13 +38,14 @@ class IButton extends StatefulWidget {
     bool isDisable = false,
   }) =>
       IButton(
-          title: title,
-          color: backgroundColor ?? VOColors.red5,
-          isNormal: isNormal,
-          textColor: textColor,
-          onPress: onPress,
-          isDisable: isDisable,
-          isLoading: isLoading);
+        title: title,
+        color: backgroundColor ?? VOColors.red5,
+        isNormal: isNormal,
+        textColor: textColor,
+        onPress: onPress,
+        isDisable: isDisable,
+        isLoading: isLoading,
+      );
 
   factory IButton.outline({
     required String title,
@@ -129,6 +130,7 @@ class _IButtonState extends State<IButton> {
     final textStyle = widget.outline == true
         ? ThemeUtils.textStyle.mediumTextRegular
         : ThemeUtils.textStyle.mediumTextMedium;
+
     return Opacity(
       opacity: widget.isDisable ? 0.3 : 1,
       child: Material(

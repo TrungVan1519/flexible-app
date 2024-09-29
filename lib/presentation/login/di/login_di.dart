@@ -21,47 +21,43 @@ class LoginDI {
     final Network network = getIt.get();
 
     // service
-    getIt.registerLazySingleton<AuthenticateActionService>(
-      () => AuthenticateActionService(dio, baseUrl: network.domain.authUrl),
-    );
-    getIt.registerLazySingleton<StaffService>(
-      () => StaffService(dio, baseUrl: network.domain.apiUrl),
-    );
+    getIt
+      ..registerLazySingleton<AuthenticateActionService>(
+        () => AuthenticateActionService(dio, baseUrl: network.domain.authUrl),
+      )
+      ..registerLazySingleton<StaffService>(
+        () => StaffService(dio, baseUrl: network.domain.apiUrl),
+      );
 
     // repository
-    getIt.registerLazySingleton<AuthenticateActionRepository>(
-      () =>
-          AuthenticateActionRepositoryImpl(authenticateActionService: getIt()),
-    );
-    getIt.registerLazySingleton<StaffRepository>(
-      () => StaffRepositoryImpl(staffService: getIt()),
-    );
+    getIt
+      ..registerLazySingleton<AuthenticateActionRepository>(
+        () => AuthenticateActionRepositoryImpl(
+            authenticateActionService: getIt()),
+      )
+      ..registerLazySingleton<StaffRepository>(
+        () => StaffRepositoryImpl(staffService: getIt()),
+      );
 
     // usecase
-    getIt.registerFactory<LoginUseCase>(
-      () => LoginUseCase(repository: getIt()),
-    );
-
-    getIt.registerFactory<GetBaseRoleUseCase>(
-      () => GetBaseRoleUseCase(repository: getIt()),
-    );
-
-    getIt.registerFactory<GetMenuUseCase>(
-        () => GetMenuUseCase(repository: getIt()));
-
-    getIt.registerFactory<GetMenuActionUseCase>(
-      () => GetMenuActionUseCase(repository: getIt()),
-    );
-
-    getIt.registerFactory<GetUserInfoUseCase>(
-      () => GetUserInfoUseCase(repository: getIt()),
-    );
-
-    getIt.registerFactory<LoginCubit>(
-      () => LoginCubit(
-        getUserInfoUseCase: getIt(),
-        loginUseCase: getIt(),
-      ),
-    );
+    getIt
+      ..registerFactory<LoginUseCase>(
+        () => LoginUseCase(repository: getIt()),
+      )
+      ..registerFactory<GetBaseRoleUseCase>(
+        () => GetBaseRoleUseCase(repository: getIt()),
+      )
+      ..registerFactory<GetMenuUseCase>(
+        () => GetMenuUseCase(repository: getIt()),
+      )
+      ..registerFactory<GetMenuActionUseCase>(
+        () => GetMenuActionUseCase(repository: getIt()),
+      )
+      ..registerFactory<GetUserInfoUseCase>(
+        () => GetUserInfoUseCase(repository: getIt()),
+      )
+      ..registerFactory<LoginCubit>(
+        () => LoginCubit(getUserInfoUseCase: getIt(), loginUseCase: getIt()),
+      );
   }
 }

@@ -6,14 +6,6 @@ part 'splash_state.freezed.dart';
 @freezed
 abstract class SplashState with _$SplashState {
   factory SplashState.init() = Init;
-
-  factory SplashState.loading() = Loading;
-
-  factory SplashState.goToLogin() = GoToLogin;
-
   factory SplashState.changeTheme(AppTheme theme) = ChangeTheme;
-
   factory SplashState.changeLanguage(AppLanguage language) = ChangeLanguage;
-
-  factory SplashState.goToHome() = GoToHome;
 }

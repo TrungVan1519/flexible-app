@@ -30,15 +30,16 @@ class LoginModule extends BaseModule {
     switch (settings.name) {
       case LoginConst.loginScreen:
         return getPageRoute(
-            MultiBlocProvider(
-              providers: [
-                BlocProvider(
-                  create: (context) => GetIt.instance<LoginCubit>(),
-                ),
-              ],
-              child: const LoginScreen(),
-            ),
-            settings);
+          MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => GetIt.instance<LoginCubit>(),
+              ),
+            ],
+            child: const LoginScreen(),
+          ),
+          settings,
+        );
     }
 
     return DefaultRoute.notFound();

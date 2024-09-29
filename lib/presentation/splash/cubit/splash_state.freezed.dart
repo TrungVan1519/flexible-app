@@ -19,62 +19,44 @@ mixin _$SplashState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() loading,
-    required TResult Function() goToLogin,
     required TResult Function(AppTheme theme) changeTheme,
     required TResult Function(AppLanguage language) changeLanguage,
-    required TResult Function() goToHome,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? loading,
-    TResult? Function()? goToLogin,
     TResult? Function(AppTheme theme)? changeTheme,
     TResult? Function(AppLanguage language)? changeLanguage,
-    TResult? Function()? goToHome,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? loading,
-    TResult Function()? goToLogin,
     TResult Function(AppTheme theme)? changeTheme,
     TResult Function(AppLanguage language)? changeLanguage,
-    TResult Function()? goToHome,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Init value) init,
-    required TResult Function(Loading value) loading,
-    required TResult Function(GoToLogin value) goToLogin,
     required TResult Function(ChangeTheme value) changeTheme,
     required TResult Function(ChangeLanguage value) changeLanguage,
-    required TResult Function(GoToHome value) goToHome,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Init value)? init,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(GoToLogin value)? goToLogin,
     TResult? Function(ChangeTheme value)? changeTheme,
     TResult? Function(ChangeLanguage value)? changeLanguage,
-    TResult? Function(GoToHome value)? goToHome,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Init value)? init,
-    TResult Function(Loading value)? loading,
-    TResult Function(GoToLogin value)? goToLogin,
     TResult Function(ChangeTheme value)? changeTheme,
     TResult Function(ChangeLanguage value)? changeLanguage,
-    TResult Function(GoToHome value)? goToHome,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -136,11 +118,8 @@ class _$InitImpl implements Init {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() loading,
-    required TResult Function() goToLogin,
     required TResult Function(AppTheme theme) changeTheme,
     required TResult Function(AppLanguage language) changeLanguage,
-    required TResult Function() goToHome,
   }) {
     return init();
   }
@@ -149,11 +128,8 @@ class _$InitImpl implements Init {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? loading,
-    TResult? Function()? goToLogin,
     TResult? Function(AppTheme theme)? changeTheme,
     TResult? Function(AppLanguage language)? changeLanguage,
-    TResult? Function()? goToHome,
   }) {
     return init?.call();
   }
@@ -162,11 +138,8 @@ class _$InitImpl implements Init {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? loading,
-    TResult Function()? goToLogin,
     TResult Function(AppTheme theme)? changeTheme,
     TResult Function(AppLanguage language)? changeLanguage,
-    TResult Function()? goToHome,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -179,11 +152,8 @@ class _$InitImpl implements Init {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Init value) init,
-    required TResult Function(Loading value) loading,
-    required TResult Function(GoToLogin value) goToLogin,
     required TResult Function(ChangeTheme value) changeTheme,
     required TResult Function(ChangeLanguage value) changeLanguage,
-    required TResult Function(GoToHome value) goToHome,
   }) {
     return init(this);
   }
@@ -192,11 +162,8 @@ class _$InitImpl implements Init {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Init value)? init,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(GoToLogin value)? goToLogin,
     TResult? Function(ChangeTheme value)? changeTheme,
     TResult? Function(ChangeLanguage value)? changeLanguage,
-    TResult? Function(GoToHome value)? goToHome,
   }) {
     return init?.call(this);
   }
@@ -205,11 +172,8 @@ class _$InitImpl implements Init {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Init value)? init,
-    TResult Function(Loading value)? loading,
-    TResult Function(GoToLogin value)? goToLogin,
     TResult Function(ChangeTheme value)? changeTheme,
     TResult Function(ChangeLanguage value)? changeLanguage,
-    TResult Function(GoToHome value)? goToHome,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -221,258 +185,6 @@ class _$InitImpl implements Init {
 
 abstract class Init implements SplashState {
   factory Init() = _$InitImpl;
-}
-
-/// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$SplashStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$LoadingImpl implements Loading {
-  _$LoadingImpl();
-
-  @override
-  String toString() {
-    return 'SplashState.loading()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function() loading,
-    required TResult Function() goToLogin,
-    required TResult Function(AppTheme theme) changeTheme,
-    required TResult Function(AppLanguage language) changeLanguage,
-    required TResult Function() goToHome,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function()? loading,
-    TResult? Function()? goToLogin,
-    TResult? Function(AppTheme theme)? changeTheme,
-    TResult? Function(AppLanguage language)? changeLanguage,
-    TResult? Function()? goToHome,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function()? loading,
-    TResult Function()? goToLogin,
-    TResult Function(AppTheme theme)? changeTheme,
-    TResult Function(AppLanguage language)? changeLanguage,
-    TResult Function()? goToHome,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(Loading value) loading,
-    required TResult Function(GoToLogin value) goToLogin,
-    required TResult Function(ChangeTheme value) changeTheme,
-    required TResult Function(ChangeLanguage value) changeLanguage,
-    required TResult Function(GoToHome value) goToHome,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(GoToLogin value)? goToLogin,
-    TResult? Function(ChangeTheme value)? changeTheme,
-    TResult? Function(ChangeLanguage value)? changeLanguage,
-    TResult? Function(GoToHome value)? goToHome,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(Loading value)? loading,
-    TResult Function(GoToLogin value)? goToLogin,
-    TResult Function(ChangeTheme value)? changeTheme,
-    TResult Function(ChangeLanguage value)? changeLanguage,
-    TResult Function(GoToHome value)? goToHome,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Loading implements SplashState {
-  factory Loading() = _$LoadingImpl;
-}
-
-/// @nodoc
-abstract class _$$GoToLoginImplCopyWith<$Res> {
-  factory _$$GoToLoginImplCopyWith(
-          _$GoToLoginImpl value, $Res Function(_$GoToLoginImpl) then) =
-      __$$GoToLoginImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$GoToLoginImplCopyWithImpl<$Res>
-    extends _$SplashStateCopyWithImpl<$Res, _$GoToLoginImpl>
-    implements _$$GoToLoginImplCopyWith<$Res> {
-  __$$GoToLoginImplCopyWithImpl(
-      _$GoToLoginImpl _value, $Res Function(_$GoToLoginImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$GoToLoginImpl implements GoToLogin {
-  _$GoToLoginImpl();
-
-  @override
-  String toString() {
-    return 'SplashState.goToLogin()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GoToLoginImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function() loading,
-    required TResult Function() goToLogin,
-    required TResult Function(AppTheme theme) changeTheme,
-    required TResult Function(AppLanguage language) changeLanguage,
-    required TResult Function() goToHome,
-  }) {
-    return goToLogin();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function()? loading,
-    TResult? Function()? goToLogin,
-    TResult? Function(AppTheme theme)? changeTheme,
-    TResult? Function(AppLanguage language)? changeLanguage,
-    TResult? Function()? goToHome,
-  }) {
-    return goToLogin?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function()? loading,
-    TResult Function()? goToLogin,
-    TResult Function(AppTheme theme)? changeTheme,
-    TResult Function(AppLanguage language)? changeLanguage,
-    TResult Function()? goToHome,
-    required TResult orElse(),
-  }) {
-    if (goToLogin != null) {
-      return goToLogin();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(Loading value) loading,
-    required TResult Function(GoToLogin value) goToLogin,
-    required TResult Function(ChangeTheme value) changeTheme,
-    required TResult Function(ChangeLanguage value) changeLanguage,
-    required TResult Function(GoToHome value) goToHome,
-  }) {
-    return goToLogin(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(GoToLogin value)? goToLogin,
-    TResult? Function(ChangeTheme value)? changeTheme,
-    TResult? Function(ChangeLanguage value)? changeLanguage,
-    TResult? Function(GoToHome value)? goToHome,
-  }) {
-    return goToLogin?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(Loading value)? loading,
-    TResult Function(GoToLogin value)? goToLogin,
-    TResult Function(ChangeTheme value)? changeTheme,
-    TResult Function(ChangeLanguage value)? changeLanguage,
-    TResult Function(GoToHome value)? goToHome,
-    required TResult orElse(),
-  }) {
-    if (goToLogin != null) {
-      return goToLogin(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class GoToLogin implements SplashState {
-  factory GoToLogin() = _$GoToLoginImpl;
 }
 
 /// @nodoc
@@ -540,11 +252,8 @@ class _$ChangeThemeImpl implements ChangeTheme {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() loading,
-    required TResult Function() goToLogin,
     required TResult Function(AppTheme theme) changeTheme,
     required TResult Function(AppLanguage language) changeLanguage,
-    required TResult Function() goToHome,
   }) {
     return changeTheme(theme);
   }
@@ -553,11 +262,8 @@ class _$ChangeThemeImpl implements ChangeTheme {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? loading,
-    TResult? Function()? goToLogin,
     TResult? Function(AppTheme theme)? changeTheme,
     TResult? Function(AppLanguage language)? changeLanguage,
-    TResult? Function()? goToHome,
   }) {
     return changeTheme?.call(theme);
   }
@@ -566,11 +272,8 @@ class _$ChangeThemeImpl implements ChangeTheme {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? loading,
-    TResult Function()? goToLogin,
     TResult Function(AppTheme theme)? changeTheme,
     TResult Function(AppLanguage language)? changeLanguage,
-    TResult Function()? goToHome,
     required TResult orElse(),
   }) {
     if (changeTheme != null) {
@@ -583,11 +286,8 @@ class _$ChangeThemeImpl implements ChangeTheme {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Init value) init,
-    required TResult Function(Loading value) loading,
-    required TResult Function(GoToLogin value) goToLogin,
     required TResult Function(ChangeTheme value) changeTheme,
     required TResult Function(ChangeLanguage value) changeLanguage,
-    required TResult Function(GoToHome value) goToHome,
   }) {
     return changeTheme(this);
   }
@@ -596,11 +296,8 @@ class _$ChangeThemeImpl implements ChangeTheme {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Init value)? init,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(GoToLogin value)? goToLogin,
     TResult? Function(ChangeTheme value)? changeTheme,
     TResult? Function(ChangeLanguage value)? changeLanguage,
-    TResult? Function(GoToHome value)? goToHome,
   }) {
     return changeTheme?.call(this);
   }
@@ -609,11 +306,8 @@ class _$ChangeThemeImpl implements ChangeTheme {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Init value)? init,
-    TResult Function(Loading value)? loading,
-    TResult Function(GoToLogin value)? goToLogin,
     TResult Function(ChangeTheme value)? changeTheme,
     TResult Function(ChangeLanguage value)? changeLanguage,
-    TResult Function(GoToHome value)? goToHome,
     required TResult orElse(),
   }) {
     if (changeTheme != null) {
@@ -699,11 +393,8 @@ class _$ChangeLanguageImpl implements ChangeLanguage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() loading,
-    required TResult Function() goToLogin,
     required TResult Function(AppTheme theme) changeTheme,
     required TResult Function(AppLanguage language) changeLanguage,
-    required TResult Function() goToHome,
   }) {
     return changeLanguage(language);
   }
@@ -712,11 +403,8 @@ class _$ChangeLanguageImpl implements ChangeLanguage {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? loading,
-    TResult? Function()? goToLogin,
     TResult? Function(AppTheme theme)? changeTheme,
     TResult? Function(AppLanguage language)? changeLanguage,
-    TResult? Function()? goToHome,
   }) {
     return changeLanguage?.call(language);
   }
@@ -725,11 +413,8 @@ class _$ChangeLanguageImpl implements ChangeLanguage {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? loading,
-    TResult Function()? goToLogin,
     TResult Function(AppTheme theme)? changeTheme,
     TResult Function(AppLanguage language)? changeLanguage,
-    TResult Function()? goToHome,
     required TResult orElse(),
   }) {
     if (changeLanguage != null) {
@@ -742,11 +427,8 @@ class _$ChangeLanguageImpl implements ChangeLanguage {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Init value) init,
-    required TResult Function(Loading value) loading,
-    required TResult Function(GoToLogin value) goToLogin,
     required TResult Function(ChangeTheme value) changeTheme,
     required TResult Function(ChangeLanguage value) changeLanguage,
-    required TResult Function(GoToHome value) goToHome,
   }) {
     return changeLanguage(this);
   }
@@ -755,11 +437,8 @@ class _$ChangeLanguageImpl implements ChangeLanguage {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Init value)? init,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(GoToLogin value)? goToLogin,
     TResult? Function(ChangeTheme value)? changeTheme,
     TResult? Function(ChangeLanguage value)? changeLanguage,
-    TResult? Function(GoToHome value)? goToHome,
   }) {
     return changeLanguage?.call(this);
   }
@@ -768,11 +447,8 @@ class _$ChangeLanguageImpl implements ChangeLanguage {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Init value)? init,
-    TResult Function(Loading value)? loading,
-    TResult Function(GoToLogin value)? goToLogin,
     TResult Function(ChangeTheme value)? changeTheme,
     TResult Function(ChangeLanguage value)? changeLanguage,
-    TResult Function(GoToHome value)? goToHome,
     required TResult orElse(),
   }) {
     if (changeLanguage != null) {
@@ -789,130 +465,4 @@ abstract class ChangeLanguage implements SplashState {
   @JsonKey(ignore: true)
   _$$ChangeLanguageImplCopyWith<_$ChangeLanguageImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$GoToHomeImplCopyWith<$Res> {
-  factory _$$GoToHomeImplCopyWith(
-          _$GoToHomeImpl value, $Res Function(_$GoToHomeImpl) then) =
-      __$$GoToHomeImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$GoToHomeImplCopyWithImpl<$Res>
-    extends _$SplashStateCopyWithImpl<$Res, _$GoToHomeImpl>
-    implements _$$GoToHomeImplCopyWith<$Res> {
-  __$$GoToHomeImplCopyWithImpl(
-      _$GoToHomeImpl _value, $Res Function(_$GoToHomeImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$GoToHomeImpl implements GoToHome {
-  _$GoToHomeImpl();
-
-  @override
-  String toString() {
-    return 'SplashState.goToHome()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GoToHomeImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function() loading,
-    required TResult Function() goToLogin,
-    required TResult Function(AppTheme theme) changeTheme,
-    required TResult Function(AppLanguage language) changeLanguage,
-    required TResult Function() goToHome,
-  }) {
-    return goToHome();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function()? loading,
-    TResult? Function()? goToLogin,
-    TResult? Function(AppTheme theme)? changeTheme,
-    TResult? Function(AppLanguage language)? changeLanguage,
-    TResult? Function()? goToHome,
-  }) {
-    return goToHome?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function()? loading,
-    TResult Function()? goToLogin,
-    TResult Function(AppTheme theme)? changeTheme,
-    TResult Function(AppLanguage language)? changeLanguage,
-    TResult Function()? goToHome,
-    required TResult orElse(),
-  }) {
-    if (goToHome != null) {
-      return goToHome();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(Loading value) loading,
-    required TResult Function(GoToLogin value) goToLogin,
-    required TResult Function(ChangeTheme value) changeTheme,
-    required TResult Function(ChangeLanguage value) changeLanguage,
-    required TResult Function(GoToHome value) goToHome,
-  }) {
-    return goToHome(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(GoToLogin value)? goToLogin,
-    TResult? Function(ChangeTheme value)? changeTheme,
-    TResult? Function(ChangeLanguage value)? changeLanguage,
-    TResult? Function(GoToHome value)? goToHome,
-  }) {
-    return goToHome?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(Loading value)? loading,
-    TResult Function(GoToLogin value)? goToLogin,
-    TResult Function(ChangeTheme value)? changeTheme,
-    TResult Function(ChangeLanguage value)? changeLanguage,
-    TResult Function(GoToHome value)? goToHome,
-    required TResult orElse(),
-  }) {
-    if (goToHome != null) {
-      return goToHome(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class GoToHome implements SplashState {
-  factory GoToHome() = _$GoToHomeImpl;
 }

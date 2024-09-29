@@ -4,7 +4,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:v_office_base/base/extension/extension.dart';
+import 'package:v_office_base/base/extension/generic.dart';
 
 enum PermissionType { success, denied, permanentlyDenied }
 
@@ -86,7 +86,7 @@ class Utils {
     try {
       // prefer using rename as it is probably faster
       return await sourceFile.rename(newPath);
-    } on FileSystemException catch (e) {
+    } on FileSystemException {
       // if rename fails, copy the source file and then delete it
       final newFile = await sourceFile.copy(newPath);
       await sourceFile.delete();

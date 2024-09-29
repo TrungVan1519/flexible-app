@@ -42,11 +42,28 @@ extension DateTimeEx on DateTime {
 
     if (dateOnly) {
       self = DateTime(year, month, day, 0, 0, 0, 0, 0);
-      compare = DateTime(gmt7.year, gmt7.month, gmt7.day, 0, 0, 0, 0, 0);
+      compare = DateTime(
+        gmt7.year,
+        gmt7.month,
+        gmt7.day,
+        0,
+        0,
+        0,
+        0,
+        0,
+      );
     } else {
       self = DateTime(year, month, day, hour, minute, second, 0, 0);
-      compare = DateTime(gmt7.year, gmt7.month, gmt7.day, gmt7.hour,
-          gmt7.minute, gmt7.second, 0, 0);
+      compare = DateTime(
+        gmt7.year,
+        gmt7.month,
+        gmt7.day,
+        gmt7.hour,
+        gmt7.minute,
+        gmt7.second,
+        0,
+        0,
+      );
     }
 
     return self.compareTo(compare);

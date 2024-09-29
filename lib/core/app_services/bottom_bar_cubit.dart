@@ -19,9 +19,7 @@ class BottomBarCubit extends Cubit<int> {
 
   void onPageChanged(int index, {VoidCallback? onJumpDone}) async {
     FocusScope.of(context).requestFocus(FocusNode());
-    if (index == MainPageType.other.index) {
-      return;
-    }
+    if (index == MainPageType.other.index) return;
 
     _jumpToPage(index, onJumpDone: onJumpDone);
   }

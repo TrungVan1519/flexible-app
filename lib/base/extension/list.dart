@@ -1,3 +1,5 @@
+import 'package:v_office_base/base/utils/d_print.dart';
+
 extension ListExtension<T> on List<T>? {
   bool get isNullOrEmpty {
     if (this == null) {
@@ -50,8 +52,8 @@ extension UtilListExtension on List {
       }
 
       return result;
-    } catch (e, s) {
-      print(e);
+    } catch (e, _) {
+      dPrint(e);
       return null;
     }
   }

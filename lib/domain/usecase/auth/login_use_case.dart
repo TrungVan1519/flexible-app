@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:v_office_base/base/extension/extension.dart';
+import 'package:v_office_base/base/extension/string.dart';
 import 'package:v_office_base/base/usecase/usecase.dart';
 import 'package:v_office_base/core/networking/interceptor/exceptions/api_exception.dart';
 import 'package:v_office_base/data/service/auth/request_model/login_request_model.dart';

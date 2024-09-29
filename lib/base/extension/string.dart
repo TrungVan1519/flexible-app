@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:v_office_base/base/extension/extension.dart';
+import 'package:v_office_base/base/extension/generic.dart';
 
 extension Convert on String? {
   int? get toInt {
@@ -84,16 +84,17 @@ extension StringUtils on String? {
       // if (this!.length > 0 && this!.endsWith('.0')) {
       //   return this!.substring(0, this!.length - 2);
       // }
-      if (this!.length > 0 && this!.endsWith('0')) {
+      if (this!.isNotEmpty && this!.endsWith('0')) {
         return this!.substring(0, this!.length - 1);
       }
       return null;
     }
+    return null;
   }
 
   String? get removeAllEndDecimalZero {
     if (!isNullOrEmpty) {
-      final req = this.removeLastEndDecimalZero;
+      final req = removeLastEndDecimalZero;
       if (req == this) {
         return this;
       } else {
@@ -224,10 +225,10 @@ extension Secure on String? {
   String asFileName() {
     String? result = this;
     if (isNullOrEmpty) return "";
-    if (this?.startsWith('\/') == true) {
+    if (this?.startsWith('/') == true) {
       result = this?.substring(1);
     }
-    result = result?.replaceAll('\/', "_");
+    result = result?.replaceAll('/', "_");
     return result!;
   }
 
@@ -243,7 +244,7 @@ extension Secure on String? {
   }
 }
 
-extension toDateTime on String? {
+extension ToDateTime on String? {
   DateTime get to_dd_mm_yyyy_DateTime {
     final now = DateTime.now();
     if (isNullOrEmpty) {

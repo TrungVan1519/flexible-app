@@ -7,13 +7,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 // ignore: unused_import
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:v_office_base/base/extension/extension.dart';
 import 'package:v_office_base/base/extension/pair.dart';
 import 'package:v_office_base/base/theme/app_theme.dart';
 import 'package:v_office_base/base/widget/toast_widget.dart';
 import 'package:v_office_base/core/app_services/app_services.dart';
 import 'package:v_office_base/core/app_services/bottom_bar_cubit.dart';
-import 'package:v_office_base/core/base_module.dart';
 import 'package:v_office_base/core/module_management.dart';
 import 'package:v_office_base/core/networking/interceptor/curl_interceptor.dart';
 import 'package:v_office_base/core/networking/interceptor/error_interceptor.dart';
@@ -32,30 +30,25 @@ typedef AppSetting = AppState<AppTheme, AppLanguage>;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  GetIt getIt = GetIt.instance;
-
-  final List<BaseModule> modules = <BaseModule>[
+  ModuleManagement().addModules([
     LoginModule(),
     DashboardModule(),
     HomeModule(),
-  ];
-
-  ModuleManagement().addModules(modules);
+  ]);
 
   await ModuleManagement().injectDependencies();
 
-  final Dio dio = getIt.get();
+  final Dio dio = GetIt.instance.get();
 
   dio.options.baseUrl = GetIt.instance.get<Network>().domain.apiUrl;
 
   dio.interceptors.addAll([
     CurlInterceptor(),
     LogInterceptor(requestBody: true, responseBody: true),
+    HandleErrorInterceptor(errorTokenExpire: () {
+      print("Force logout");
+    }),
   ]);
-
-  dio.interceptors.add(HandleErrorInterceptor(errorTokenExpire: () {
-    print("Force logout");
-  }));
 
   //register notification
   await FCMService.instance.initialize(DefaultFirebaseOptions.currentPlatform);

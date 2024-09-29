@@ -66,48 +66,39 @@ class AppCubit extends Cubit<AppState<AppTheme, AppLanguage>> {
           ),
         );
 
-  final SharedPreferencesManager _sharedPreferencesManager =
-      GetIt.instance.get();
+  final SharedPreferencesManager _prefsManager = GetIt.instance.get();
 
-  String themeToString(AppTheme theme) {
-    return theme.keyValue;
-  }
+  String themeToString(AppTheme theme) => theme.keyValue;
 
-  String langToString(AppLanguage language) {
-    return language.keyValue;
-  }
+  String langToString(AppLanguage language) => language.keyValue;
 
   Pair getDefault() {
     final currentLocale = Platform.localeName;
-    AppLanguage defaultLanguage = AppLanguage.vi;
+    final defaultLang =
+        currentLocale.contains('vi') ? AppLanguage.vi : AppLanguage.en;
 
-    if (currentLocale.contains('vi')) {
-      defaultLanguage = AppLanguage.vi;
-    }
-
-    final String language0 = _sharedPreferencesManager.getString(kLanguage) ??
-        defaultLanguage.keyValue;
-
-    final String themValue =
-        _sharedPreferencesManager.getString(kTheme) ?? AppTheme.light.keyValue;
+    final themValue =
+        _prefsManager.getString(kTheme) ?? AppTheme.light.keyValue;
     final theme = AppThemeEx.fromValue(themValue);
 
+    final langValue =
+        _prefsManager.getString(kLanguage) ?? defaultLang.keyValue;
     AppLanguage language = AppLanguage.en;
-    if (language0 == AppLanguage.vi.keyValue) {
+    if (langValue == AppLanguage.vi.keyValue) {
       language = AppLanguage.vi;
     }
 
     return Pair(language, theme);
   }
 
-  void saveLanguage(String langCode) {
-    _sharedPreferencesManager.putString(kLanguage, langCode);
-  }
-
   Future<bool> saveTheme(String themeCode) {
     return SharedPreferences.getInstance().then((shared) {
       return shared.setString(kTheme, themeCode);
     });
+  }
+
+  Future<bool?> saveLanguage(String langCode) async {
+    return await _prefsManager.putString(kLanguage, langCode);
   }
 
   void changeTheme({required AppTheme theme}) {
@@ -122,7 +113,6 @@ class AppCubit extends Cubit<AppState<AppTheme, AppLanguage>> {
 
   void changeLanguage({required AppLanguage language}) {
     saveLanguage(langToString(language));
-
     safeEmit(
       AppState<AppTheme, AppLanguage>(
         appLanguage: language,
